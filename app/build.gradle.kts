@@ -77,5 +77,5 @@ dependencies {
     implementation("com.google.firebase:firebase-crashlytics")
 
     // Maven local
-    implementation("io.clearquote.assessment.cq_sdk:cq-android-sdk:2.0.1@aar") { isTransitive = true }
+    implementation ("com.github.clearquotetech:cq-android-sdk:2.0.1-test")
 }
