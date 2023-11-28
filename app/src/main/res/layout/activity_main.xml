@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+    <!--App name-->
+    <TextView
+        android:id="@+id/tvAppName"
+        style="@style/h5_headline"
+        android:gravity="center" />
+
+    <!--Start inspection with existing key-->
+    <Button
+        android:id="@+id/btnStartInspection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textAllCaps="false"
+        android:text="Start Inspection" />
+
+    <!--Change key-->
+    <Button
+        android:id="@+id/btnConfigureKey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textAllCaps="false"
+        android:text="Configure key" />
+
+    <!--Log out-->
+    <Button
+        android:id="@+id/btnLogOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?attr/materialButtonOutlinedStyle"
+        android:textColor="@color/red_200"
+        app:strokeColor="@color/red_200"
+        android:textAllCaps="false"
+        android:layout_marginTop="24dp"
+        android:text="Logout"/>
+
+    <!--Current key-->
+    <TextView
+        android:id="@+id/tvSdkKeyHeading"
+        style="@style/c1_caption"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="SDK Key:" />
+
+    <!--CQ SDK version name-->
+    <TextView
+        android:id="@+id/tvCQSDKVersionName"
+        style="@style/c1_caption"
+        android:text=""
+        android:gravity="center"
+        android:layout_marginTop="24dp"/>
+
+    <!--App version name-->
+    <TextView
+        android:id="@+id/tvTestAppVersionName"
+        style="@style/c1_caption"
+        android:text=""
+        android:gravity="center"
+        android:layout_marginTop="24dp"/>
+</LinearLayout>
