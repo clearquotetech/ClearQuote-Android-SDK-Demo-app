@@ -39,6 +39,9 @@ class MainActivity : AppCompatActivity() {
         cqSDKInitializer = CQSDKInitializer(context = this)
         window.statusBarColor = ContextCompat.getColor(this, R.color.teal_200)
         clearingSDKDataLoadingDialog = LoadingDialog(this, "Clearing data")
+
+        // Check offline inspections sync status
+        cqSDKInitializer.checkOfflineQuoteSyncStates()
     }
 
     override fun onStart() {
