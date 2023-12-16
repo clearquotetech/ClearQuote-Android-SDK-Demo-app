@@ -36,7 +36,6 @@ class SdkInitializationActivity : AppCompatActivity() {
             MODE_PRIVATE
         )
         sdkInitializationDialog = LoadingDialog(this, "Initializing ClearQuote SDK")
-        window.statusBarColor = ContextCompat.getColor(this, R.color.teal_200)
 
         // Set click listener on the save button
         binding.btnSave.setOnClickListener {
