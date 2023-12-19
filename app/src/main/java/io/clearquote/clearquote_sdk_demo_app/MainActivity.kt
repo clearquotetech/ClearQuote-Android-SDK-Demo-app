@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                 // Clear data from SDK
                 CoroutineScope(Dispatchers.IO).launch {
                     // Clear SDK data
-                    cqSDKInitializer.clearData()
+                    cqSDKInitializer.logOut()
 
                     // Close loading dialog
                     CoroutineScope(Dispatchers.Main).launch {
