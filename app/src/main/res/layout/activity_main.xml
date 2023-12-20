@@ -1,70 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    tools:context=".MainActivity">
+    android:fillViewport="true"
+    android:fadeScrollbars="false"
+    android:scrollbars="vertical"
+    android:scrollbarSize="@dimen/scroll_bar_size"
+    android:scrollbarTrackVertical="@color/scroll_bar_track_color"
+    android:scrollbarThumbVertical="@color/scroll_bar_thumb_color">
 
-    <!--App name-->
-    <TextView
-        android:id="@+id/tvAppName"
-        style="@style/h5_headline"
-        android:gravity="center" />
-
-    <!--Start inspection with existing key-->
-    <Button
-        android:id="@+id/btnStartInspection"
-        android:layout_width="wrap_content"
+    <!--Main content-->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:textAllCaps="false"
-        android:text="Start Inspection" />
-
-    <!--Change key-->
-    <Button
-        android:id="@+id/btnConfigureKey"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:textAllCaps="false"
-        android:text="Configure key" />
-
-    <!--Log out-->
-    <Button
-        android:id="@+id/btnLogOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="?attr/materialButtonOutlinedStyle"
-        android:textColor="@color/red_200"
-        app:strokeColor="@color/red_200"
-        android:textAllCaps="false"
-        android:layout_marginTop="24dp"
-        android:text="Logout"/>
-
-    <!--Current key-->
-    <TextView
-        android:id="@+id/tvSdkKeyHeading"
-        style="@style/c1_caption"
-        android:layout_marginTop="24dp"
+        android:orientation="vertical"
         android:gravity="center"
-        android:text="SDK Key:" />
+        tools:context=".MainActivity">
 
-    <!--CQ SDK version name-->
-    <TextView
-        android:id="@+id/tvCQSDKVersionName"
-        style="@style/c1_caption"
-        android:text=""
-        android:gravity="center"
-        android:layout_marginTop="24dp"/>
+        <!--App name-->
+        <TextView
+            android:id="@+id/tvAppName"
+            style="@style/h5_headline"
+            android:gravity="center" />
 
-    <!--App version name-->
-    <TextView
-        android:id="@+id/tvTestAppVersionName"
-        style="@style/c1_caption"
-        android:text=""
-        android:gravity="center"
-        android:layout_marginTop="24dp"/>
-</LinearLayout>
+        <!--User name-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlUserName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter user name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Location-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlLocation"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Location"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Start inspection with existing key-->
+        <Button
+            android:id="@+id/btnStartInspection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:layout_marginTop="20dp"
+            android:text="Start Inspection" />
+
+        <!--Change key-->
+        <Button
+            android:id="@+id/btnConfigureKey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textAllCaps="false"
+            android:text="Configure key" />
+
+        <!--Log out-->
+        <Button
+            android:id="@+id/btnLogOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?attr/materialButtonOutlinedStyle"
+            android:textColor="@color/red_200"
+            app:strokeColor="@color/red_200"
+            android:textAllCaps="false"
+            android:layout_marginTop="20dp"
+            android:text="Logout"/>
+
+        <!--Current key-->
+        <TextView
+            android:id="@+id/tvSdkKeyHeading"
+            style="@style/c1_caption"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="SDK Key:" />
+
+        <!--CQ SDK version name-->
+        <TextView
+            android:id="@+id/tvCQSDKVersionName"
+            style="@style/c1_caption"
+            android:text=""
+            android:gravity="center"
+            android:layout_marginTop="20dp"/>
+
+        <!--App version name-->
+        <TextView
+            android:id="@+id/tvTestAppVersionName"
+            style="@style/c1_caption"
+            android:text=""
+            android:gravity="center"
+            android:layout_marginTop="20dp"/>
+    </LinearLayout>
+</ScrollView>

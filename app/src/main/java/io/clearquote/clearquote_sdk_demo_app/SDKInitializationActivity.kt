@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat
 import io.clearquote.assessment.cq_sdk.CQSDKInitializer
 import io.clearquote.assessment.cq_sdk.R
+import io.clearquote.assessment.cq_sdk.datasources.remote.network.datamodels.createQuoteApi.payload.CreatedByAttrs
 import io.clearquote.assessment.cq_sdk.singletons.PublicConstants
 import io.clearquote.clearquote_sdk_demo_app.databinding.ActivitySdkInitializationBinding
 import io.clearquote.clearquote_sdk_demo_app.support.ErrorDialog
@@ -61,6 +62,10 @@ class SdkInitializationActivity : AppCompatActivity() {
                         // Start inspection
                         cqSDKInitializer.startInspection(
                             activityContext = this,
+                            createdByAttrs = CreatedByAttrs(
+                                userName = binding.etUserName.text.toString().trim(),
+                                location = binding.etLocation.text.toString().trim()
+                            ),
                             result = { isStarted, msg ->
                                 // Dismiss loading dialog
                                 sdkInitializationDialog?.dismiss()
