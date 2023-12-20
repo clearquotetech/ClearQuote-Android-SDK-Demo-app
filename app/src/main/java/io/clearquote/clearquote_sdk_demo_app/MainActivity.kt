@@ -5,9 +5,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import io.clearquote.assessment.cq_sdk.CQSDKInitializer
 import io.clearquote.assessment.cq_sdk.R
 import io.clearquote.assessment.cq_sdk.datasources.remote.network.datamodels.createQuoteApi.payload.CreatedByAttrs
+import io.clearquote.assessment.cq_sdk.singletons.PublicConstants.quoteCreationFlowStatus
 import io.clearquote.clearquote_sdk_demo_app.databinding.ActivityMainBinding
 import io.clearquote.clearquote_sdk_demo_app.support.ErrorDialog
 import io.clearquote.clearquote_sdk_demo_app.support.LoadingDialog
@@ -48,6 +50,14 @@ class MainActivity : AppCompatActivity() {
 
         // Set up UI
         setUpUI()
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+
+        if (intent != null) {
+            Toast.makeText(this, intent.getStringExtra(quoteCreationFlowStatus), Toast.LENGTH_LONG).show()
+        }
     }
 
     @SuppressLint("SetTextI18n")
