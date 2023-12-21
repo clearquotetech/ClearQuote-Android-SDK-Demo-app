@@ -13,6 +13,7 @@ import io.clearquote.assessment.cq_sdk.singletons.PublicConstants.quoteCreationF
 import io.clearquote.clearquote_sdk_demo_app.databinding.ActivityMainBinding
 import io.clearquote.clearquote_sdk_demo_app.support.ErrorDialog
 import io.clearquote.clearquote_sdk_demo_app.support.LoadingDialog
+import io.clearquote.clearquote_sdk_demo_app.support.MessageDialog
 import io.clearquote.clearquote_sdk_demo_app.support.app_shared_preferences_file_name
 import io.clearquote.clearquote_sdk_demo_app.support.cq_sdk_key
 import kotlinx.coroutines.CoroutineScope
@@ -55,8 +56,19 @@ class MainActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
 
+        /*
+         * Inside intent quote creation message can be any one of these
+         * quoteCreationFlowSuccessStatus, quoteCreationFlowFailureStatus
+         */
         if (intent != null) {
-            Toast.makeText(this, intent.getStringExtra(quoteCreationFlowStatus), Toast.LENGTH_LONG).show()
+            // Get message
+            val message = intent.getStringExtra(quoteCreationFlowStatus) ?: "Could not identify status"
+
+            // Update message in the dialog
+            MessageDialog(
+                mContext = this,
+                message = "$quoteCreationFlowStatus : $message"
+            ).show()
         }
     }
 
