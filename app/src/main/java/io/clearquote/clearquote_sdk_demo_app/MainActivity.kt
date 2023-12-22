@@ -54,11 +54,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-
-        /*
-         * Inside intent quote creation message can be any one of these
-         * quoteCreationFlowSuccessStatus, quoteCreationFlowFailureStatus
-         */
         if (intent != null) {
             // Get status
             val message = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusMsgKeyInIntent) ?: "Could not identify status message"
