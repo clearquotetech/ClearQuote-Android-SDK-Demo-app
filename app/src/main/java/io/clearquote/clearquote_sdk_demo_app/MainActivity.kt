@@ -5,15 +5,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import io.clearquote.assessment.cq_sdk.CQSDKInitializer
 import io.clearquote.assessment.cq_sdk.R
 import io.clearquote.assessment.cq_sdk.datasources.remote.network.datamodels.createQuoteApi.payload.CreatedByAttrs
-import io.clearquote.assessment.cq_sdk.singletons.PublicConstants.quoteCreationFlowStatus
+import io.clearquote.assessment.cq_sdk.singletons.PublicConstants
 import io.clearquote.clearquote_sdk_demo_app.databinding.ActivityMainBinding
 import io.clearquote.clearquote_sdk_demo_app.support.ErrorDialog
 import io.clearquote.clearquote_sdk_demo_app.support.LoadingDialog
-import io.clearquote.clearquote_sdk_demo_app.support.MessageDialog
+import io.clearquote.clearquote_sdk_demo_app.support.QuoteCreationStatusDialog
 import io.clearquote.clearquote_sdk_demo_app.support.app_shared_preferences_file_name
 import io.clearquote.clearquote_sdk_demo_app.support.cq_sdk_key
 import kotlinx.coroutines.CoroutineScope
@@ -61,13 +60,19 @@ class MainActivity : AppCompatActivity() {
          * quoteCreationFlowSuccessStatus, quoteCreationFlowFailureStatus
          */
         if (intent != null) {
-            // Get message
-            val message = intent.getStringExtra(quoteCreationFlowStatus) ?: "Could not identify status"
+            // Get status
+            val message = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusMsgKeyInIntent) ?: "Could not identify status message"
+            val tempCode = intent.getIntExtra(PublicConstants.quoteCreationFlowStatusCodeKeyInIntent, -1)
+            val code = if (tempCode == -1) {
+                "Could not identify status code"
+            } else {
+                tempCode
+            }
 
             // Update message in the dialog
-            MessageDialog(
+            QuoteCreationStatusDialog(
                 mContext = this,
-                message = "$quoteCreationFlowStatus : $message"
+                message = "Code = $code \n Message = $message"
             ).show()
         }
     }

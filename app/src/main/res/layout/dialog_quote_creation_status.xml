@@ -13,11 +13,20 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <!--Heading-->
+        <TextView
+            android:id="@+id/tvHeading"
+            android:gravity="center"
+            android:text="Quote creation status"
+            style="@style/h5_headline" />
+
         <!--Error message-->
         <TextView
-            android:id="@+id/tvErrorMessage"
+            android:id="@+id/tvMessage"
             android:gravity="center"
-            style="@style/h6_headline" />
+            android:layout_marginTop="20dp"
+            android:text="Code = \n Message = "
+            style="@style/s1_subtitle" />
 
         <!--Okay button-->
         <Button
