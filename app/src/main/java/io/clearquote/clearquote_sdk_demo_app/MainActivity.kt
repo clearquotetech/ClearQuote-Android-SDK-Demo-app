@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.view.View
 import io.clearquote.assessment.cq_sdk.CQSDKInitializer
 import io.clearquote.assessment.cq_sdk.R
-import io.clearquote.assessment.cq_sdk.datasources.remote.network.datamodels.createQuoteApi.payload.CreatedByAttrs
+import io.clearquote.assessment.cq_sdk.datasources.remote.network.datamodels.createQuoteApi.payload.ClientAttrs
 import io.clearquote.assessment.cq_sdk.singletons.PublicConstants
 import io.clearquote.clearquote_sdk_demo_app.databinding.ActivityMainBinding
 import io.clearquote.clearquote_sdk_demo_app.support.ErrorDialog
@@ -120,9 +120,9 @@ class MainActivity : AppCompatActivity() {
                 if (cqSDKInitializer.isCQSDKInitialized()) {
                     cqSDKInitializer.startInspection(
                         activityContext = this,
-                        createdByAttrs = CreatedByAttrs(
+                        clientAttrs = ClientAttrs(
                             userName = binding.etUserName.text.toString().trim(),
-                            location = binding.etLocation.text.toString().trim()
+                            dealer = binding.etDealer.text.toString().trim()
                         ),
                         result = { isStarted, msg ->
                             // Show error if required
@@ -138,7 +138,7 @@ class MainActivity : AppCompatActivity() {
             binding.tlUserName.visibility = View.VISIBLE
 
             // Show location input field
-            binding.tlLocation.visibility = View.VISIBLE
+            binding.tlDealer.visibility = View.VISIBLE
         } else { // SDK key not available
             // Show Configure key button
             binding.btnConfigureKey.visibility = View.VISIBLE
@@ -162,7 +162,7 @@ class MainActivity : AppCompatActivity() {
             binding.tlUserName.visibility = View.GONE
 
             // Hide location input field
-            binding.tlLocation.visibility = View.GONE
+            binding.tlDealer.visibility = View.GONE
         }
 
         // Set up CQ SDK version name

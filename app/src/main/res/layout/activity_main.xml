@@ -46,7 +46,7 @@
 
         <!--Location-->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tlLocation"
+            android:id="@+id/tlDealer"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etLocation"
+                android:id="@+id/etDealer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
