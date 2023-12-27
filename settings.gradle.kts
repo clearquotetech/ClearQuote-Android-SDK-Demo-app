@@ -17,6 +17,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ClearQuote-SDK-Showcase-app"
+rootProject.name = "ClearQuote SDK Demo App"
 include(":app")
  

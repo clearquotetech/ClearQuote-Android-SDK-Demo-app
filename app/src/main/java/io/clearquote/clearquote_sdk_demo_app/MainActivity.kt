@@ -5,12 +5,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
 import io.clearquote.assessment.cq_sdk.CQSDKInitializer
 import io.clearquote.assessment.cq_sdk.R
+import io.clearquote.assessment.cq_sdk.datasources.remote.network.datamodels.createQuoteApi.payload.ClientAttrs
+import io.clearquote.assessment.cq_sdk.singletons.PublicConstants
 import io.clearquote.clearquote_sdk_demo_app.databinding.ActivityMainBinding
 import io.clearquote.clearquote_sdk_demo_app.support.ErrorDialog
 import io.clearquote.clearquote_sdk_demo_app.support.LoadingDialog
+import io.clearquote.clearquote_sdk_demo_app.support.QuoteCreationStatusDialog
 import io.clearquote.clearquote_sdk_demo_app.support.app_shared_preferences_file_name
 import io.clearquote.clearquote_sdk_demo_app.support.cq_sdk_key
 import kotlinx.coroutines.CoroutineScope
@@ -37,8 +39,10 @@ class MainActivity : AppCompatActivity() {
 
         // Initialize other vars
         cqSDKInitializer = CQSDKInitializer(context = this)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.teal_200)
         clearingSDKDataLoadingDialog = LoadingDialog(this, "Clearing data")
+
+        // Check offline inspections sync status
+        cqSDKInitializer.checkOfflineQuoteSyncStates()
     }
 
     override fun onStart() {
@@ -46,6 +50,26 @@ class MainActivity : AppCompatActivity() {
 
         // Set up UI
         setUpUI()
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        if (intent != null) {
+            // Get status
+            val message = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusMsgKeyInIntent) ?: "Could not identify status message"
+            val tempCode = intent.getIntExtra(PublicConstants.quoteCreationFlowStatusCodeKeyInIntent, -1)
+            val code = if (tempCode == -1) {
+                "Could not identify status code"
+            } else {
+                tempCode
+            }
+
+            // Update message in the dialog
+            QuoteCreationStatusDialog(
+                mContext = this,
+                message = "Code = $code \n Message = $message"
+            ).show()
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -74,7 +98,7 @@ class MainActivity : AppCompatActivity() {
                 // Clear data from SDK
                 CoroutineScope(Dispatchers.IO).launch {
                     // Clear SDK data
-                    cqSDKInitializer.clearData()
+                    cqSDKInitializer.logOut()
 
                     // Close loading dialog
                     CoroutineScope(Dispatchers.Main).launch {
@@ -96,6 +120,10 @@ class MainActivity : AppCompatActivity() {
                 if (cqSDKInitializer.isCQSDKInitialized()) {
                     cqSDKInitializer.startInspection(
                         activityContext = this,
+                        clientAttrs = ClientAttrs(
+                            userName = binding.etUserName.text.toString().trim(),
+                            dealer = binding.etDealer.text.toString().trim()
+                        ),
                         result = { isStarted, msg ->
                             // Show error if required
                             if (!isStarted) {
@@ -105,6 +133,12 @@ class MainActivity : AppCompatActivity() {
                     )
                 }
             }
+
+            // Show user name input field
+            binding.tlUserName.visibility = View.VISIBLE
+
+            // Show location input field
+            binding.tlDealer.visibility = View.VISIBLE
         } else { // SDK key not available
             // Show Configure key button
             binding.btnConfigureKey.visibility = View.VISIBLE
@@ -123,6 +157,12 @@ class MainActivity : AppCompatActivity() {
             // Hide Start inspection
             binding.btnStartInspection.visibility = View.GONE
             binding.btnStartInspection.setOnClickListener(null)
+
+            // Hide user name input field
+            binding.tlUserName.visibility = View.GONE
+
+            // Hide location input field
+            binding.tlDealer.visibility = View.GONE
         }
 
         // Set up CQ SDK version name
