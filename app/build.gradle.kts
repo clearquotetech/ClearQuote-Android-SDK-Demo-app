@@ -76,6 +76,6 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-crashlytics")
 
-    // Maven local
-    implementation ("com.github.clearquotetech:cq-android-sdk:2.0.2-test")
+    // CQ SDK
+    implementation ("com.github.clearquotetech:cq-android-sdk:2.0.3-test")
 }
