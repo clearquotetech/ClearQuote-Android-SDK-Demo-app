@@ -1,10 +1,12 @@
 package io.clearquote.clearquote_sdk_demo_app
 
 import android.annotation.SuppressLint
+import android.content.ComponentName
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import io.clearquote.assessment.cq_sdk.CQSDKInitializer
 import io.clearquote.assessment.cq_sdk.R
 import io.clearquote.assessment.cq_sdk.datasources.remote.network.datamodels.createQuoteApi.payload.ClientAttrs
@@ -18,6 +20,7 @@ import io.clearquote.clearquote_sdk_demo_app.support.cq_sdk_key
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
 
 class MainActivity : AppCompatActivity() {
     // Binding
@@ -43,6 +46,11 @@ class MainActivity : AppCompatActivity() {
 
         // Check offline inspections sync status
         cqSDKInitializer.checkOfflineQuoteSyncStates()
+
+        // Set click listener on the open cq native app
+        binding.btnOpenCqNativeApp.setOnClickListener {
+            openCqNativeApp()
+        }
     }
 
     override fun onStart() {
@@ -183,5 +191,18 @@ class MainActivity : AppCompatActivity() {
 
         // Show the dialog
         errorDialog.show()
+    }
+
+    private fun openCqNativeApp() {
+        val packageName = "io.clearquote.assessment"
+        val cName = ComponentName(packageName, "${packageName}.main.MainActivity")
+        val intent = Intent(Intent.ACTION_MAIN)
+        intent.component = cName
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        try {
+            startActivity(intent)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }

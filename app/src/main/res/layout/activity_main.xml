@@ -93,6 +93,15 @@
             android:layout_marginTop="20dp"
             android:text="Logout"/>
 
+        <!--Open CQ native android app-->
+        <Button
+            android:id="@+id/btnOpenCqNativeApp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textAllCaps="false"
+            android:text="Open CQ native app" />
+
         <!--Current key-->
         <TextView
             android:id="@+id/tvSdkKeyHeading"
