@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     // Loading dialogs
     private var clearingSDKDataLoadingDialog: LoadingDialog? = null
+    private var loadingDialog: LoadingDialog? = null
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         // Initialize other vars
         cqSDKInitializer = CQSDKInitializer(context = this)
         clearingSDKDataLoadingDialog = LoadingDialog(this, "Clearing data")
+        loadingDialog = LoadingDialog(this, "Loading...")
 
         // Check offline inspections sync status
         cqSDKInitializer.checkOfflineQuoteSyncStates()
@@ -79,6 +81,15 @@ class MainActivity : AppCompatActivity() {
                 message = "Code = $code \n Message = $message"
             ).show()
         }
+    }
+
+    override fun onStop() {
+        // Dismiss loading dialogs
+        clearingSDKDataLoadingDialog?.dismiss()
+        loadingDialog?.dismiss()
+
+        // Call super
+        super.onStop()
     }
 
     @SuppressLint("SetTextI18n")
@@ -127,6 +138,10 @@ class MainActivity : AppCompatActivity() {
             binding.btnStartInspection.setOnClickListener {
                 // Send to sdk initialization activity
                 if (cqSDKInitializer.isCQSDKInitialized()) {
+                    // Show a loading dialog
+                    loadingDialog?.show()
+
+                    // Make request to start an inspection
                     cqSDKInitializer.startInspection(
                         activityContext = this,
                         clientAttrs = ClientAttrs(
@@ -136,6 +151,10 @@ class MainActivity : AppCompatActivity() {
                         result = { isStarted, msg ->
                             // Show error if required
                             if (!isStarted) {
+                                // Dismiss the loading dialog
+                                loadingDialog?.dismiss()
+
+                                // Show error
                                 showErrorDialog(message = msg)
                             }
                         }
