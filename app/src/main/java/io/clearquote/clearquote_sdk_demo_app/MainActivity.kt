@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -146,16 +145,18 @@ class MainActivity : AppCompatActivity() {
                         activityContext = this,
                         clientAttrs = ClientAttrs(
                             userName = binding.etUserName.text.toString().trim(),
-                            dealer = binding.etDealer.text.toString().trim()
+                            dealer = binding.etDealer.text.toString().trim(),
+                            dealerIdentifier = binding.etDealerIdentifier.text.toString().trim(),
+                            client_unique_id = binding.etClientUniqueId.text.toString().trim()
                         ),
-                        result = { isStarted, msg ->
+                        result = { isStarted, msg, code ->
                             // Show error if required
                             if (!isStarted) {
                                 // Dismiss the loading dialog
                                 loadingDialog?.dismiss()
 
                                 // Show error
-                                showErrorDialog(message = msg)
+                                showErrorDialog(message = "message= $msg, code= $code")
                             }
                         }
                     )
@@ -165,8 +166,14 @@ class MainActivity : AppCompatActivity() {
             // Show user name input field
             binding.tlUserName.visibility = View.VISIBLE
 
-            // Show location input field
+            // Show dealer input field
             binding.tlDealer.visibility = View.VISIBLE
+
+            // Show dealer identifier input field
+            binding.tlDealerIdentifier.visibility = View.VISIBLE
+
+            // Show client unique id input field
+            binding.tlClientUniqueId.visibility = View.VISIBLE
         } else { // SDK key not available
             // Show Configure key button
             binding.btnConfigureKey.visibility = View.VISIBLE
@@ -191,6 +198,12 @@ class MainActivity : AppCompatActivity() {
 
             // Hide location input field
             binding.tlDealer.visibility = View.GONE
+
+            // Hide dealer identifier input field
+            binding.tlDealerIdentifier.visibility = View.GONE
+
+            // Hide client unique id input field
+            binding.tlClientUniqueId.visibility = View.GONE
         }
 
         // Set up CQ SDK version name
