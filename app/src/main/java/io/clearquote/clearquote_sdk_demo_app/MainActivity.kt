@@ -66,19 +66,25 @@ class MainActivity : AppCompatActivity() {
         super.onNewIntent(intent)
         if (intent != null) {
             // Get status
+            val identifier = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusIdentifierKeyInIntent) ?: "Could not identify Identifier"
             val message = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusMsgKeyInIntent) ?: "Could not identify status message"
             val tempCode = intent.getIntExtra(PublicConstants.quoteCreationFlowStatusCodeKeyInIntent, -1)
-            val code = if (tempCode == -1) {
-                "Could not identify status code"
-            } else {
-                tempCode
-            }
 
-            // Update message in the dialog
-            QuoteCreationStatusDialog(
-                mContext = this,
-                message = "Code = $code \n Message = $message"
-            ).show()
+            // Check if identifier is valid
+            if (identifier == PublicConstants.quoteCreationFlowStatusIdentifier) {
+                // Get code
+                val code = if (tempCode == -1) {
+                    "Could not identify status code"
+                } else {
+                    tempCode
+                }
+
+                // Update message in the dialog
+                QuoteCreationStatusDialog(
+                    mContext = this,
+                    message = "Code = $code \n Message = $message"
+                ).show()
+            }
         }
     }
 
