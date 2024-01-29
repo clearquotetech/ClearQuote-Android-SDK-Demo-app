@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         loadingDialog = LoadingDialog(this, "Loading...")
 
         // Check offline inspections sync status
-        cqSDKInitializer.checkOfflineQuoteSyncStates()
+        cqSDKInitializer.triggerOfflineSync()
 
         // Set click listener on the open cq native app
         binding.btnOpenCqNativeApp.setOnClickListener {
@@ -180,6 +180,17 @@ class MainActivity : AppCompatActivity() {
 
             // Show client unique id input field
             binding.tlClientUniqueId.visibility = View.VISIBLE
+
+            // Show offline quote sync complete status
+            binding.btnOfflineQuoteSyncCompleteStatus.visibility = View.VISIBLE
+
+            // Set click listener from the check quote sync complete status button
+            binding.btnOfflineQuoteSyncCompleteStatus.setOnClickListener {
+                cqSDKInitializer.checkOfflineQuoteSyncCompleteStatus {
+                    Toast.makeText(this@MainActivity, "Result: $it", Toast.LENGTH_LONG).show()
+                }
+            }
+
         } else { // SDK key not available
             // Show Configure key button
             binding.btnConfigureKey.visibility = View.VISIBLE
@@ -210,6 +221,12 @@ class MainActivity : AppCompatActivity() {
 
             // Hide client unique id input field
             binding.tlClientUniqueId.visibility = View.GONE
+
+            // Unset click listener from the check quote sync complete status button
+            binding.btnOfflineQuoteSyncCompleteStatus.setOnClickListener(null)
+
+            // Hide offline quote sync complete status
+            binding.btnOfflineQuoteSyncCompleteStatus.visibility = View.GONE
         }
 
         // Set up CQ SDK version name
