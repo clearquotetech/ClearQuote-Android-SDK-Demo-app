@@ -55,8 +55,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
 
         // Set up UI
         setUpUI()
@@ -108,6 +108,9 @@ class MainActivity : AppCompatActivity() {
         // Get SDK key
         val sdkKey = sharedPreferences.getString(cq_sdk_key, "")
 
+        // Get SDK user details
+        val sdkUserDetails = cqSDKInitializer.getUserDetails()
+
         // Check if it sdk key was available
         if (!sdkKey.isNullOrEmpty() && sdkKey.isNotBlank()) { // SDK key available
             // Hide configure key button
@@ -137,6 +140,14 @@ class MainActivity : AppCompatActivity() {
             // Show Sdk key heading
             binding.tvSdkKeyHeading.visibility = View.VISIBLE
             binding.tvSdkKeyHeading.text = "SDK Key: $sdkKey"
+            
+            // Show dealer code
+            binding.tvDealerCode.visibility = View.VISIBLE
+            binding.tvDealerCode.text = "Dealer Code: ${sdkUserDetails.dealerCode}"
+            
+            // Show user name
+            binding.tvUserName.visibility = View.VISIBLE
+            binding.tvUserName.text = "Username: ${sdkUserDetails.userName}"
 
             // Show Start inspection
             binding.btnStartInspection.visibility = View.VISIBLE
@@ -205,6 +216,14 @@ class MainActivity : AppCompatActivity() {
             // Hide Sdk key heading
             binding.tvSdkKeyHeading.visibility = View.GONE
             binding.tvSdkKeyHeading.text = ""
+            
+            // Hide Dealer code heading
+            binding.tvDealerCode.visibility = View.GONE
+            binding.tvDealerCode.text = ""
+            
+            // Hide User name heading
+            binding.tvUserName.visibility = View.GONE
+            binding.tvUserName.text = ""
 
             // Hide Start inspection
             binding.btnStartInspection.visibility = View.GONE
@@ -233,7 +252,7 @@ class MainActivity : AppCompatActivity() {
         binding.tvCQSDKVersionName.text = CQSDKInitializer.sdkVersionName
 
         // Set up test app version name
-        binding.tvTestAppVersionName.text = BuildConfig.VERSION_NAME
+        binding.tvTestAppVersionName.text = "CQ Android SDK Demo app version: ${BuildConfig.VERSION_NAME}"
 
         // Set up app name
         binding.tvAppName.text = getString(R.string.app_name)
