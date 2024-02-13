@@ -77,5 +77,5 @@ dependencies {
     implementation("com.google.firebase:firebase-crashlytics")
 
     // CQ SDK
-    implementation ("com.github.clearquotetech:cq-android-sdk:2.0.4")
+    implementation ("com.github.clearquotetech:cq-android-sdk:2.0.4-test")
 }
