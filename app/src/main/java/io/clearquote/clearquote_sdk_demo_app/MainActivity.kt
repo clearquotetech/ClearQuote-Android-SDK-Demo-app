@@ -1,10 +1,12 @@
 package io.clearquote.clearquote_sdk_demo_app
 
 import android.annotation.SuppressLint
+import android.content.ComponentName
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import io.clearquote.assessment.cq_sdk.CQSDKInitializer
 import io.clearquote.assessment.cq_sdk.R
 import io.clearquote.assessment.cq_sdk.datasources.remote.network.datamodels.createQuoteApi.payload.ClientAttrs
@@ -19,6 +21,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+
 class MainActivity : AppCompatActivity() {
     // Binding
     private lateinit var binding: ActivityMainBinding
@@ -28,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     // Loading dialogs
     private var clearingSDKDataLoadingDialog: LoadingDialog? = null
+    private var loadingDialog: LoadingDialog? = null
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,13 +44,19 @@ class MainActivity : AppCompatActivity() {
         // Initialize other vars
         cqSDKInitializer = CQSDKInitializer(context = this)
         clearingSDKDataLoadingDialog = LoadingDialog(this, "Clearing data")
+        loadingDialog = LoadingDialog(this, "Loading...")
 
         // Check offline inspections sync status
-        cqSDKInitializer.checkOfflineQuoteSyncStates()
+        cqSDKInitializer.triggerOfflineSync()
+
+        // Set click listener on the open cq native app
+        binding.btnOpenCqNativeApp.setOnClickListener {
+            openCqNativeApp()
+        }
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
 
         // Set up UI
         setUpUI()
@@ -56,20 +66,35 @@ class MainActivity : AppCompatActivity() {
         super.onNewIntent(intent)
         if (intent != null) {
             // Get status
+            val identifier = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusIdentifierKeyInIntent) ?: "Could not identify Identifier"
             val message = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusMsgKeyInIntent) ?: "Could not identify status message"
             val tempCode = intent.getIntExtra(PublicConstants.quoteCreationFlowStatusCodeKeyInIntent, -1)
-            val code = if (tempCode == -1) {
-                "Could not identify status code"
-            } else {
-                tempCode
-            }
 
-            // Update message in the dialog
-            QuoteCreationStatusDialog(
-                mContext = this,
-                message = "Code = $code \n Message = $message"
-            ).show()
+            // Check if identifier is valid
+            if (identifier == PublicConstants.quoteCreationFlowStatusIdentifier) {
+                // Get code
+                val code = if (tempCode == -1) {
+                    "Could not identify status code"
+                } else {
+                    tempCode
+                }
+
+                // Update message in the dialog
+                QuoteCreationStatusDialog(
+                    mContext = this,
+                    message = "Code = $code \n Message = $message"
+                ).show()
+            }
         }
+    }
+
+    override fun onStop() {
+        // Dismiss loading dialogs
+        clearingSDKDataLoadingDialog?.dismiss()
+        loadingDialog?.dismiss()
+
+        // Call super
+        super.onStop()
     }
 
     @SuppressLint("SetTextI18n")
@@ -82,6 +107,9 @@ class MainActivity : AppCompatActivity() {
 
         // Get SDK key
         val sdkKey = sharedPreferences.getString(cq_sdk_key, "")
+
+        // Get SDK user details
+        val sdkUserDetails = cqSDKInitializer.getUserDetails()
 
         // Check if it sdk key was available
         if (!sdkKey.isNullOrEmpty() && sdkKey.isNotBlank()) { // SDK key available
@@ -112,22 +140,40 @@ class MainActivity : AppCompatActivity() {
             // Show Sdk key heading
             binding.tvSdkKeyHeading.visibility = View.VISIBLE
             binding.tvSdkKeyHeading.text = "SDK Key: $sdkKey"
+            
+            // Show dealer code
+            binding.tvDealerCode.visibility = View.VISIBLE
+            binding.tvDealerCode.text = "Dealer Code: ${sdkUserDetails.dealerCode}"
+            
+            // Show user name
+            binding.tvUserName.visibility = View.VISIBLE
+            binding.tvUserName.text = "Username: ${sdkUserDetails.userName}"
 
             // Show Start inspection
             binding.btnStartInspection.visibility = View.VISIBLE
             binding.btnStartInspection.setOnClickListener {
                 // Send to sdk initialization activity
                 if (cqSDKInitializer.isCQSDKInitialized()) {
+                    // Show a loading dialog
+                    loadingDialog?.show()
+
+                    // Make request to start an inspection
                     cqSDKInitializer.startInspection(
                         activityContext = this,
                         clientAttrs = ClientAttrs(
                             userName = binding.etUserName.text.toString().trim(),
-                            dealer = binding.etDealer.text.toString().trim()
+                            dealer = binding.etDealer.text.toString().trim(),
+                            dealerIdentifier = binding.etDealerIdentifier.text.toString().trim(),
+                            client_unique_id = binding.etClientUniqueId.text.toString().trim()
                         ),
-                        result = { isStarted, msg ->
+                        result = { isStarted, msg, code ->
                             // Show error if required
                             if (!isStarted) {
-                                showErrorDialog(message = msg)
+                                // Dismiss the loading dialog
+                                loadingDialog?.dismiss()
+
+                                // Show error
+                                showErrorDialog(message = "message= $msg, code= $code")
                             }
                         }
                     )
@@ -137,8 +183,25 @@ class MainActivity : AppCompatActivity() {
             // Show user name input field
             binding.tlUserName.visibility = View.VISIBLE
 
-            // Show location input field
+            // Show dealer input field
             binding.tlDealer.visibility = View.VISIBLE
+
+            // Show dealer identifier input field
+            binding.tlDealerIdentifier.visibility = View.VISIBLE
+
+            // Show client unique id input field
+            binding.tlClientUniqueId.visibility = View.VISIBLE
+
+            // Show offline quote sync complete status
+            binding.btnOfflineQuoteSyncCompleteStatus.visibility = View.VISIBLE
+
+            // Set click listener from the check quote sync complete status button
+            binding.btnOfflineQuoteSyncCompleteStatus.setOnClickListener {
+                cqSDKInitializer.checkOfflineQuoteSyncCompleteStatus {
+                    Toast.makeText(this@MainActivity, "Result: $it", Toast.LENGTH_LONG).show()
+                }
+            }
+
         } else { // SDK key not available
             // Show Configure key button
             binding.btnConfigureKey.visibility = View.VISIBLE
@@ -153,6 +216,14 @@ class MainActivity : AppCompatActivity() {
             // Hide Sdk key heading
             binding.tvSdkKeyHeading.visibility = View.GONE
             binding.tvSdkKeyHeading.text = ""
+            
+            // Hide Dealer code heading
+            binding.tvDealerCode.visibility = View.GONE
+            binding.tvDealerCode.text = ""
+            
+            // Hide User name heading
+            binding.tvUserName.visibility = View.GONE
+            binding.tvUserName.text = ""
 
             // Hide Start inspection
             binding.btnStartInspection.visibility = View.GONE
@@ -163,13 +234,25 @@ class MainActivity : AppCompatActivity() {
 
             // Hide location input field
             binding.tlDealer.visibility = View.GONE
+
+            // Hide dealer identifier input field
+            binding.tlDealerIdentifier.visibility = View.GONE
+
+            // Hide client unique id input field
+            binding.tlClientUniqueId.visibility = View.GONE
+
+            // Unset click listener from the check quote sync complete status button
+            binding.btnOfflineQuoteSyncCompleteStatus.setOnClickListener(null)
+
+            // Hide offline quote sync complete status
+            binding.btnOfflineQuoteSyncCompleteStatus.visibility = View.GONE
         }
 
         // Set up CQ SDK version name
         binding.tvCQSDKVersionName.text = CQSDKInitializer.sdkVersionName
 
         // Set up test app version name
-        binding.tvTestAppVersionName.text = BuildConfig.VERSION_NAME
+        binding.tvTestAppVersionName.text = "CQ Android SDK Demo app version: ${BuildConfig.VERSION_NAME}"
 
         // Set up app name
         binding.tvAppName.text = getString(R.string.app_name)
@@ -183,5 +266,19 @@ class MainActivity : AppCompatActivity() {
 
         // Show the dialog
         errorDialog.show()
+    }
+
+    private fun openCqNativeApp() {
+        val packageName = "io.clearquote.assessment"
+        val cName = ComponentName(packageName, "${packageName}.main.MainActivity")
+        val intent = Intent(Intent.ACTION_MAIN)
+        intent.component = cName
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        try {
+            startActivity(intent)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this, "Could not find the target app", Toast.LENGTH_LONG).show()
+        }
     }
 }
