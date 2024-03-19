@@ -307,8 +307,6 @@ class MainActivity : AppCompatActivity() {
             binding.swOfflineMode.visibility = View.GONE
 
             // Hide dividers
-
-            // Show dividers
             binding.md1.visibility = View.GONE
             binding.md2.visibility = View.GONE
             binding.md3.visibility = View.GONE
