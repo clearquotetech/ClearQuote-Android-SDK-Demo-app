@@ -12,9 +12,9 @@ android {
     defaultConfig {
         applicationId = "io.clearquote.clearquote_sdk_demo_app"
         minSdk = 26
-        targetSdk = 33
-        versionCode = 4
-        versionName = "1.4"
+        targetSdk = 34
+        versionCode = 5
+        versionName = "1.5"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
