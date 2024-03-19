@@ -350,6 +350,15 @@
             android:textAllCaps="false"
             android:text="Open CQ native app" />
 
+        <!--Check quote completion status-->
+        <Button
+            android:id="@+id/btnOfflineQuoteSyncCompleteStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textAllCaps="false"
+            android:text="Check offline quote sync complete status" />
+
         <!--Current key-->
         <TextView
             android:id="@+id/tvSdkKeyHeading"
@@ -357,6 +366,22 @@
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="SDK Key:" />
+
+        <!--Current key-->
+        <TextView
+            android:id="@+id/tvDealerCode"
+            style="@style/c1_caption"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Dealer Code:" />
+
+        <!--Current key-->
+        <TextView
+            android:id="@+id/tvUserName"
+            style="@style/c1_caption"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Username:" />
 
         <!--CQ SDK version name-->
         <TextView
@@ -372,6 +397,7 @@
             style="@style/c1_caption"
             android:text=""
             android:gravity="center"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
     </LinearLayout>
 </ScrollView>

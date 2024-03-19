@@ -58,8 +58,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
 
         // Set up UI
         setUpUI()
@@ -111,6 +111,9 @@ class MainActivity : AppCompatActivity() {
         // Get SDK key
         val sdkKey = sharedPreferences.getString(cq_sdk_key, "")
 
+        // Get SDK user details
+        val sdkUserDetails = cqSDKInitializer.getUserDetails()
+
         // Check if it sdk key was available
         if (!sdkKey.isNullOrEmpty() && sdkKey.isNotBlank()) { // SDK key available
             // Hide configure key button
@@ -140,6 +143,14 @@ class MainActivity : AppCompatActivity() {
             // Show Sdk key heading
             binding.tvSdkKeyHeading.visibility = View.VISIBLE
             binding.tvSdkKeyHeading.text = "SDK Key: $sdkKey"
+
+            // Show dealer code
+            binding.tvDealerCode.visibility = View.VISIBLE
+            binding.tvDealerCode.text = "Dealer Code: ${sdkUserDetails.dealerCode}"
+
+            // Show user name
+            binding.tvUserName.visibility = View.VISIBLE
+            binding.tvUserName.text = "Username: ${sdkUserDetails.userName}"
 
             // Show Start inspection
             binding.btnStartInspection.visibility = View.VISIBLE
@@ -199,9 +210,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            // Show client attrs heading
-            binding.tvClientAttrsHeading.visibility = View.VISIBLE
-
             // Show user name input field
             binding.tlUserName.visibility = View.VISIBLE
 
@@ -213,6 +221,17 @@ class MainActivity : AppCompatActivity() {
 
             // Show client unique id input field
             binding.tlClientUniqueId.visibility = View.VISIBLE
+
+            // Show offline quote sync complete status
+            binding.btnOfflineQuoteSyncCompleteStatus.visibility = View.VISIBLE
+
+            // Set click listener from the check quote sync complete status button
+            binding.btnOfflineQuoteSyncCompleteStatus.setOnClickListener {
+                cqSDKInitializer.checkOfflineQuoteSyncCompleteStatus {
+                    Toast.makeText(this@MainActivity, "Result: $it", Toast.LENGTH_LONG).show()
+                }
+            }
+
 
             // Show input details heading
             binding.tvInputDetailsHeading.visibility = View.VISIBLE
@@ -260,6 +279,14 @@ class MainActivity : AppCompatActivity() {
             binding.tvSdkKeyHeading.visibility = View.GONE
             binding.tvSdkKeyHeading.text = ""
 
+            // Hide Dealer code heading
+            binding.tvDealerCode.visibility = View.GONE
+            binding.tvDealerCode.text = ""
+
+            // Hide User name heading
+            binding.tvUserName.visibility = View.GONE
+            binding.tvUserName.text = ""
+
             // Hide Start inspection
             binding.btnStartInspection.visibility = View.GONE
             binding.btnStartInspection.setOnClickListener(null)
@@ -278,6 +305,12 @@ class MainActivity : AppCompatActivity() {
 
             // Hide client unique id input field
             binding.tlClientUniqueId.visibility = View.GONE
+
+            // Unset click listener from the check quote sync complete status button
+            binding.btnOfflineQuoteSyncCompleteStatus.setOnClickListener(null)
+
+            // Hide offline quote sync complete status
+            binding.btnOfflineQuoteSyncCompleteStatus.visibility = View.GONE
 
             // Hide input details heading
             binding.tvInputDetailsHeading.visibility = View.GONE
@@ -316,7 +349,7 @@ class MainActivity : AppCompatActivity() {
         binding.tvCQSDKVersionName.text = CQSDKInitializer.sdkVersionName
 
         // Set up test app version name
-        binding.tvTestAppVersionName.text = BuildConfig.VERSION_NAME
+        binding.tvTestAppVersionName.text = "CQ Android SDK Demo app version: ${BuildConfig.VERSION_NAME}"
 
         // Set up app name
         binding.tvAppName.text = getString(R.string.app_name)
