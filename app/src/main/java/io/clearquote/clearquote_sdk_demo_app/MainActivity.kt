@@ -210,6 +210,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
+            // Show client attrs heading
+            binding.tvClientAttrsHeading.visibility = View.VISIBLE
+
             // Show user name input field
             binding.tlUserName.visibility = View.VISIBLE
 
