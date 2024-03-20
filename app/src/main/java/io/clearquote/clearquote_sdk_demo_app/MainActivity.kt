@@ -187,8 +187,7 @@ class MainActivity : AppCompatActivity() {
                     // Create an instance of input details
                     val inputDetails = InputDetails(
                         vehicleDetails = vehicleDetails,
-                        customerDetails = customerDetails,
-                        createOfflineInspection = binding.swOfflineMode.isChecked
+                        customerDetails = customerDetails
                     )
 
                     // Make request to start an inspection
@@ -259,9 +258,6 @@ class MainActivity : AppCompatActivity() {
 
             // Show phone number ll
             binding.llDialCodeAndPhoneNumber.visibility = View.VISIBLE
-
-            // Show offline mode switch
-            binding.swOfflineMode.visibility = View.VISIBLE
 
             // Show dividers
             binding.md1.visibility = View.VISIBLE
@@ -338,9 +334,6 @@ class MainActivity : AppCompatActivity() {
 
             // Hide phone number ll
             binding.llDialCodeAndPhoneNumber.visibility = View.GONE
-
-            // Hide offline mode switch
-            binding.swOfflineMode.visibility = View.GONE
 
             // Hide dividers
             binding.md1.visibility = View.GONE

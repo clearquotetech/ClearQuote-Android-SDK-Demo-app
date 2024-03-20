@@ -293,16 +293,6 @@
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
-        <!--Offline mode switch-->
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/swOfflineMode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Offline mode"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="10dp"/>
-
         <!--Divider-->
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/md2"
