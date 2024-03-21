@@ -14,6 +14,7 @@ import io.clearquote.assessment.cq_sdk.models.CustomerDetails
 import io.clearquote.assessment.cq_sdk.models.InputDetails
 import io.clearquote.assessment.cq_sdk.models.VehicleDetails
 import io.clearquote.assessment.cq_sdk.singletons.PublicConstants
+import io.clearquote.clearquote_sdk_demo_app.autocaptureflow.InputActivity
 import io.clearquote.clearquote_sdk_demo_app.databinding.ActivityMainBinding
 import io.clearquote.clearquote_sdk_demo_app.support.ErrorDialog
 import io.clearquote.clearquote_sdk_demo_app.support.LoadingDialog
@@ -114,8 +115,8 @@ class MainActivity : AppCompatActivity() {
         // Get SDK user details
         val sdkUserDetails = cqSDKInitializer.getUserDetails()
 
-        // Check if it sdk key was available
-        if (!sdkKey.isNullOrEmpty() && sdkKey.isNotBlank()) { // SDK key available
+        // SDK key available
+        if (!sdkKey.isNullOrEmpty() && sdkKey.isNotBlank()) {
             // Hide configure key button
             binding.btnConfigureKey.visibility = View.GONE
             binding.btnConfigureKey.setOnClickListener(null)
@@ -263,7 +264,10 @@ class MainActivity : AppCompatActivity() {
             binding.md1.visibility = View.VISIBLE
             binding.md2.visibility = View.VISIBLE
             binding.md3.visibility = View.VISIBLE
-        } else { // SDK key not available
+        }
+
+        // SDK key not available
+        else {
             // Show Configure key button
             binding.btnConfigureKey.visibility = View.VISIBLE
             binding.btnConfigureKey.setOnClickListener {
@@ -341,6 +345,14 @@ class MainActivity : AppCompatActivity() {
             binding.md3.visibility = View.GONE
         }
 
+        // Show auto capture button
+        binding.btnStartAutoCaptureFlow.visibility = View.VISIBLE
+
+        // Add click listener on the start auto capture button
+        binding.btnStartAutoCaptureFlow.setOnClickListener {
+            startAutoCaptureFlow()
+        }
+
         // Set up CQ SDK version name
         binding.tvCQSDKVersionName.text = CQSDKInitializer.sdkVersionName
 
@@ -372,6 +384,18 @@ class MainActivity : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
             Toast.makeText(this, "Could not find the target app", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun startAutoCaptureFlow() {
+        // CQ SDK is initialized
+        if (cqSDKInitializer.isCQSDKInitialized()) {
+            startActivity(Intent(this, InputActivity::class.java))
+        }
+
+        // SDK is not initialized
+        else {
+            Toast.makeText(this, "SDK is not initialized", Toast.LENGTH_LONG).show()
         }
     }
 }
