@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import io.clearquote.assessment.cq_sdk.CQSDKInitializer
 import io.clearquote.assessment.cq_sdk.R
 import io.clearquote.assessment.cq_sdk.datasources.remote.network.datamodels.createQuoteApi.payload.ClientAttrs
+import io.clearquote.assessment.cq_sdk.models.CustomerDetails
+import io.clearquote.assessment.cq_sdk.models.InputDetails
+import io.clearquote.assessment.cq_sdk.models.VehicleDetails
 import io.clearquote.assessment.cq_sdk.singletons.PublicConstants
 import io.clearquote.clearquote_sdk_demo_app.databinding.ActivityMainBinding
 import io.clearquote.clearquote_sdk_demo_app.support.ErrorDialog
@@ -47,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         loadingDialog = LoadingDialog(this, "Loading...")
 
         // Check offline inspections sync status
-        cqSDKInitializer.triggerOfflineSync()
+        cqSDKInitializer.checkOfflineQuoteSyncCompleteStatus{}
 
         // Set click listener on the open cq native app
         binding.btnOpenCqNativeApp.setOnClickListener {
@@ -140,11 +143,11 @@ class MainActivity : AppCompatActivity() {
             // Show Sdk key heading
             binding.tvSdkKeyHeading.visibility = View.VISIBLE
             binding.tvSdkKeyHeading.text = "SDK Key: $sdkKey"
-            
+
             // Show dealer code
             binding.tvDealerCode.visibility = View.VISIBLE
             binding.tvDealerCode.text = "Dealer Code: ${sdkUserDetails.dealerCode}"
-            
+
             // Show user name
             binding.tvUserName.visibility = View.VISIBLE
             binding.tvUserName.text = "Username: ${sdkUserDetails.userName}"
@@ -157,15 +160,41 @@ class MainActivity : AppCompatActivity() {
                     // Show a loading dialog
                     loadingDialog?.show()
 
+                    // Create an instance of client attrs
+                    val clientAttrs = ClientAttrs(
+                        userName = binding.etUserName.text.toString().trim(),
+                        dealer = binding.etDealer.text.toString().trim(),
+                        dealerIdentifier = binding.etDealerIdentifier.text.toString().trim(),
+                        client_unique_id = binding.etClientUniqueId.text.toString().trim()
+                    )
+
+                    // Customer details
+                    val customerDetails = CustomerDetails(
+                        name = binding.etCustomerName.text.toString(),
+                        email = binding.etCustomerEmail.text.toString(),
+                        dialCode = binding.etCustomerDialCode.text.toString(),
+                        phoneNumber = binding.etCustomerPhoneNumber.text.toString(),
+                    )
+
+                    // Vehicle details
+                    val vehicleDetails = VehicleDetails(
+                        regNumber = binding.etRegNumber.text.toString() ,
+                        make = binding.etMake.text.toString(),
+                        model = binding.etModel.text.toString(),
+                        bodyStyle = binding.etBodyStyle.text.toString()
+                    )
+
+                    // Create an instance of input details
+                    val inputDetails = InputDetails(
+                        vehicleDetails = vehicleDetails,
+                        customerDetails = customerDetails
+                    )
+
                     // Make request to start an inspection
                     cqSDKInitializer.startInspection(
                         activityContext = this,
-                        clientAttrs = ClientAttrs(
-                            userName = binding.etUserName.text.toString().trim(),
-                            dealer = binding.etDealer.text.toString().trim(),
-                            dealerIdentifier = binding.etDealerIdentifier.text.toString().trim(),
-                            client_unique_id = binding.etClientUniqueId.text.toString().trim()
-                        ),
+                        clientAttrs = clientAttrs,
+                        inputDetails = inputDetails,
                         result = { isStarted, msg, code ->
                             // Show error if required
                             if (!isStarted) {
@@ -179,6 +208,9 @@ class MainActivity : AppCompatActivity() {
                     )
                 }
             }
+
+            // Show client attrs heading
+            binding.tvClientAttrsHeading.visibility = View.VISIBLE
 
             // Show user name input field
             binding.tlUserName.visibility = View.VISIBLE
@@ -202,6 +234,35 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
+
+            // Show input details heading
+            binding.tvInputDetailsHeading.visibility = View.VISIBLE
+
+            // Show reg number ip
+            binding.tlRegNumber.visibility = View.VISIBLE
+
+            // Show make ip
+            binding.tlMake.visibility = View.VISIBLE
+
+            // Show model ip
+            binding.tlModel.visibility = View.VISIBLE
+
+            // Show bodystyle ip
+            binding.tlBodyStyle.visibility = View.VISIBLE
+
+            // Show customer name ip
+            binding.tlCustomerName.visibility = View.VISIBLE
+
+            // Show customer email ip
+            binding.tlCustomerEmail.visibility = View.VISIBLE
+
+            // Show phone number ll
+            binding.llDialCodeAndPhoneNumber.visibility = View.VISIBLE
+
+            // Show dividers
+            binding.md1.visibility = View.VISIBLE
+            binding.md2.visibility = View.VISIBLE
+            binding.md3.visibility = View.VISIBLE
         } else { // SDK key not available
             // Show Configure key button
             binding.btnConfigureKey.visibility = View.VISIBLE
@@ -216,11 +277,11 @@ class MainActivity : AppCompatActivity() {
             // Hide Sdk key heading
             binding.tvSdkKeyHeading.visibility = View.GONE
             binding.tvSdkKeyHeading.text = ""
-            
+
             // Hide Dealer code heading
             binding.tvDealerCode.visibility = View.GONE
             binding.tvDealerCode.text = ""
-            
+
             // Hide User name heading
             binding.tvUserName.visibility = View.GONE
             binding.tvUserName.text = ""
@@ -228,6 +289,9 @@ class MainActivity : AppCompatActivity() {
             // Hide Start inspection
             binding.btnStartInspection.visibility = View.GONE
             binding.btnStartInspection.setOnClickListener(null)
+
+            // Hide client attrs heading
+            binding.tvClientAttrsHeading.visibility = View.GONE
 
             // Hide user name input field
             binding.tlUserName.visibility = View.GONE
@@ -246,6 +310,35 @@ class MainActivity : AppCompatActivity() {
 
             // Hide offline quote sync complete status
             binding.btnOfflineQuoteSyncCompleteStatus.visibility = View.GONE
+
+            // Hide input details heading
+            binding.tvInputDetailsHeading.visibility = View.GONE
+
+            // Hide reg number ip
+            binding.tlRegNumber.visibility = View.GONE
+
+            // Hide make ip
+            binding.tlMake.visibility = View.GONE
+
+            // Hide model ip
+            binding.tlModel.visibility = View.GONE
+
+            // Hide bodystyle ip
+            binding.tlBodyStyle.visibility = View.GONE
+
+            // Hide customer name ip
+            binding.tlCustomerName.visibility = View.GONE
+
+            // Hide customer email ip
+            binding.tlCustomerEmail.visibility = View.GONE
+
+            // Hide phone number ll
+            binding.llDialCodeAndPhoneNumber.visibility = View.GONE
+
+            // Hide dividers
+            binding.md1.visibility = View.GONE
+            binding.md2.visibility = View.GONE
+            binding.md3.visibility = View.GONE
         }
 
         // Set up CQ SDK version name

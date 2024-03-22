@@ -12,9 +12,9 @@ android {
     defaultConfig {
         applicationId = "io.clearquote.clearquote_sdk_demo_app"
         minSdk = 26
-        targetSdk = 33
-        versionCode = 4
-        versionName = "1.4"
+        targetSdk = 34
+        versionCode = 8
+        versionName = "1.8"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -77,5 +77,5 @@ dependencies {
     implementation("com.google.firebase:firebase-crashlytics")
 
     // CQ SDK
-    implementation ("com.github.clearquotetech:cq-android-sdk:2.0.4-test")
+    implementation ("com.github.clearquotetech:cq-android-sdk:2.0.8-test")
 }
