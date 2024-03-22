@@ -18,6 +18,7 @@ import io.clearquote.assessment.cq_sdk.msilAssets.CQMsilBodystyleToModelCodeMapp
 import io.clearquote.assessment.cq_sdk.msilAssets.models.OverlayImageData
 import io.clearquote.assessment.cq_sdk.singletons.CQSDKBroadCastActions
 import io.clearquote.assessment.cq_sdk.singletons.CQSDKBroadcastExtrasKey
+import io.clearquote.assessment.cq_sdk.view.features.activities.videoinspection.VideoTypeImageCaptureActivity
 import io.clearquote.clearquote_sdk_demo_app.adapters.VerticalRvAdapter
 import io.clearquote.clearquote_sdk_demo_app.databinding.ActivityCapturedImagesBinding
 import io.clearquote.clearquote_sdk_demo_app.models.InspectionData
@@ -25,7 +26,7 @@ import io.clearquote.clearquote_sdk_demo_app.models.VerticalAdapterDataItem
 import io.clearquote.clearquote_sdk_demo_app.support.IntentExtrasKeys
 import io.clearquote.clearquote_sdk_demo_app.support.LoadingDialog
 
-class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.CaptureMoreListener {
+class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAdapterListener {
     // Binding
     private lateinit var binding: ActivityCapturedImagesBinding
 
@@ -33,16 +34,16 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.CaptureMor
     private lateinit var cqSdkInitializer: CQSDKInitializer
 
     // Images data
-    val data = arrayListOf<VerticalAdapterDataItem>()
+    private val data = arrayListOf<VerticalAdapterDataItem>()
 
     // Vertical adapter instance
-    var verticalRvAdapter: VerticalRvAdapter? = null
+    private var verticalRvAdapter: VerticalRvAdapter? = null
 
     // To be initialized from intent
-    var inspectionData: InspectionData? = null
+    private var inspectionData: InspectionData? = null
 
     // Tobe initialized later
-    var liveDetectionDTO: LiveDetectionDTO = LiveDetectionDTO(
+    private var liveDetectionDTO: LiveDetectionDTO = LiveDetectionDTO(
         bodystyle = "",
         overlays = listOf(),
         panelsToZoneMapping = null,
@@ -50,7 +51,7 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.CaptureMor
     )
 
     // Loading dialogs
-    var loadingDialog: LoadingDialog? = null
+    private var loadingDialog: LoadingDialog? = null
 
     // Broadcast receiver
     private val broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
@@ -60,7 +61,7 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.CaptureMor
                     CQSDKBroadCastActions.overlayImageCaptured -> {
                         // Get extra data from intent
                         val imageCapturedForOverlayId = intent.getStringExtra(CQSDKBroadcastExtrasKey.imageCapturedForOverlayId)
-                        val overlayImageFileCanonicalPath = intent.getStringExtra(CQSDKBroadcastExtrasKey.overlayImageFileCanonicalPath)
+                        // val overlayImageFileCanonicalPath = intent.getStringExtra(CQSDKBroadcastExtrasKey.overlayImageFileCanonicalPath)
                         val tempOverlayImageDataObj = intent.getStringExtra(CQSDKBroadcastExtrasKey.overlayImageDataObj)
                         val overlayImageDataObj = Gson().fromJson(tempOverlayImageDataObj, OverlayImageData::class.java)
 
@@ -102,8 +103,8 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.CaptureMor
         }
     }
 
-
     // Other overrides
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -120,10 +121,19 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.CaptureMor
             e.printStackTrace()
             null
         }
+        liveDetectionDTO = getLiveDetectionDTOBasisModelCode(
+            modelCode = inspectionData?.modelCode ?: ""
+        )
         loadingDialog = LoadingDialog(
             context = this,
             message = "Loading..."
         )
+
+        // Set model code
+        binding.tvModelCode.text = "Model Code: ${inspectionData?.modelCode}"
+
+        // Set body style
+        binding.tvBodyStyle.text = "Bodystyle: ${liveDetectionDTO.bodystyle}"
 
         // Set vertical RV
         setVerticalRv()
@@ -174,11 +184,6 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.CaptureMor
     }
 
     private fun setVerticalRv() {
-        // Get live detection DTO
-        liveDetectionDTO = getLiveDetectionDTOBasisModelCode(
-            modelCode = inspectionData?.modelCode ?: ""
-        )
-
         // Add data items in the data list
         for (obj in liveDetectionDTO.overlays) {
             data.add(
@@ -194,7 +199,7 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.CaptureMor
         verticalRvAdapter = VerticalRvAdapter(
             context = this,
             data = data,
-            capMoreListener = this
+            eventsListener = this
         )
 
         // Set an adapter to the vertical rv
@@ -236,5 +241,29 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.CaptureMor
                 }
             }
         )
+    }
+
+    override fun deleteImage(overlayId: String, overlayImageDataObj: OverlayImageData) {
+        // Delete image from the SDK data structure
+        for (obj in CQSDKInitializer.hMapOfOverlayToImages) {
+            if (obj.key == overlayId) {
+                obj.value.remove(overlayImageDataObj)
+            }
+        }
+
+        // Delete image from the app data structure
+        var updatedIndex = 0
+        for ((itemIndex, item) in data.withIndex()) {
+            if (item.overlayId == overlayId) {
+                updatedIndex = itemIndex
+                item.images.remove(overlayImageDataObj)
+            }
+        }
+
+        // Delete image file
+        overlayImageDataObj.photoFile.delete()
+
+        // Update RV
+        verticalRvAdapter?.notifyItemChanged(updatedIndex)
     }
 }

@@ -16,13 +16,13 @@ import io.clearquote.clearquote_sdk_demo_app.models.VerticalAdapterDataItem
 class VerticalRvAdapter(
     private val context: Context,
     private val data: ArrayList<VerticalAdapterDataItem>,
-    private val capMoreListener: CaptureMoreListener
+    private val eventsListener: VerticalAdapterListener
 ) : RecyclerView.Adapter<VerticalRvAdapter.VerticalRvViewHolder>() {
 
     /**
      * View holder class
      */
-    class VerticalRvViewHolder(itemView: View, capMoreListener: CaptureMoreListener) :
+    class VerticalRvViewHolder(itemView: View, capMoreListener: VerticalAdapterListener) :
         RecyclerView.ViewHolder(itemView) {
         val captureMoreListenerHolderInstance = capMoreListener
         var tvViewTitle: TextView = itemView.findViewById(R.id.tvViewTitle)
@@ -38,7 +38,7 @@ class VerticalRvAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VerticalRvViewHolder {
         return VerticalRvViewHolder(
             LayoutInflater.from(context)
-                .inflate(R.layout.upload_images_main_rv_row_item, parent, false), capMoreListener
+                .inflate(R.layout.upload_images_main_rv_row_item, parent, false), eventsListener
         )
     }
 
@@ -62,6 +62,7 @@ class VerticalRvAdapter(
 
         // Set the inner horizontal recycler view
         setViewItemRv(
+            overlayId = viewObject.overlayId,
             recyclerView = holder.rvItemRecyclerView,
             data = viewObject.images
         )
@@ -82,13 +83,16 @@ class VerticalRvAdapter(
      * view and keep track of all the instances which are created.
      */
     private fun setViewItemRv(
+        overlayId: String,
         recyclerView: RecyclerView,
         data: List<OverlayImageData>
     ) {
         val itemRecyclerAdapter = HorizontalRvAdapter(
-                context = context,
-                data = data
-            )
+            context = context,
+            data = data,
+            eventsListener = eventsListener,
+            overlayId = overlayId
+        )
 
         // Set adapter
         recyclerView.adapter = itemRecyclerAdapter
@@ -101,7 +105,8 @@ class VerticalRvAdapter(
      * A listener to listen the click on capture more button
      * this click will get navigate towards the upload images activity.
      */
-    interface CaptureMoreListener {
+    interface VerticalAdapterListener {
         fun captureMore(position: Int)
+        fun deleteImage(overlayId: String, overlayImageDataObj: OverlayImageData)
     }
 }

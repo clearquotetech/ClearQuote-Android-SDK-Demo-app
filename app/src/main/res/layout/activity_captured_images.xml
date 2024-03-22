@@ -7,29 +7,81 @@
     android:layout_height="match_parent"
     tools:context=".autocaptureflow.CapturedImagesActivity">
 
+    <!--Heading-->
+    <TextView
+        android:id="@+id/tvHeading"
+        style="@style/h6_headline"
+        android:layout_marginTop="10dp"
+        android:text="Captured Images Summary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--Model code-->
+    <TextView
+        android:id="@+id/tvModelCode"
+        style="@style/s2_subtitle"
+        android:layout_marginTop="5dp"
+        android:text="Model Code:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHeading" />
+
+    <!--Body style-->
+    <TextView
+        android:id="@+id/tvBodyStyle"
+        style="@style/s2_subtitle"
+        android:text="Bodystyle:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvModelCode" />
+
+    <!--Divider-->
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/md1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvBodyStyle" />
+
     <!--Captured Images data-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCapturedImages"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="20dp"
+        android:fadeScrollbars="false"
+        android:scrollbars="vertical"
+        android:scrollbarSize="@dimen/scroll_bar_size"
+        android:scrollbarTrackVertical="@color/scroll_bar_track_color"
+        android:scrollbarThumbVertical="@color/scroll_bar_thumb_color"
         app:layout_constraintBottom_toTopOf="@+id/btnExit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/md1" />
+
+    <!--Divider-->
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvCapturedImages" />
 
     <!--Exit button-->
     <Button
         android:id="@+id/btnExit"
-        style="@style/outlined_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:text="Exit"
         android:textAllCaps="false"
         android:textColor="@color/red_200"
+        app:strokeColor="@color/red_200"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:strokeColor="@color/red_200" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

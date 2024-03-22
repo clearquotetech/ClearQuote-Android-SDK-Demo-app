@@ -308,9 +308,6 @@
             android:layout_height="wrap_content"
             android:textAllCaps="false"
             android:layout_marginTop="10dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            style="@style/filled_button"
             android:text="Start Inspection" />
 
         <!--Change key-->
@@ -320,9 +317,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textAllCaps="false"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            style="@style/filled_button"
             android:text="Configure key" />
 
         <!--Log out-->
@@ -330,7 +324,7 @@
             android:id="@+id/btnLogOut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/outlined_button"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:textColor="@color/red_200"
             app:strokeColor="@color/red_200"
             android:textAllCaps="false"
@@ -344,9 +338,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textAllCaps="false"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            style="@style/outlined_button"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeColor="@color/clearquote_color_primary"
             android:text="Open CQ native app" />
 
         <!--Check quote completion status-->
@@ -356,9 +349,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textAllCaps="false"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            style="@style/outlined_button"
+            app:strokeColor="@color/clearquote_color_primary"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:text="Check offline quote sync complete status" />
 
         <!--Start auto capture flow-->
@@ -367,9 +359,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            style="@style/filled_button"
             android:textAllCaps="false"
             android:text="Start Auto capture flow" />
 
