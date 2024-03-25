@@ -25,6 +25,7 @@ import io.clearquote.clearquote_sdk_demo_app.models.InspectionData
 import io.clearquote.clearquote_sdk_demo_app.models.VerticalAdapterDataItem
 import io.clearquote.clearquote_sdk_demo_app.support.IntentExtrasKeys
 import io.clearquote.clearquote_sdk_demo_app.support.LoadingDialog
+import java.io.File
 
 class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAdapterListener {
     // Binding
@@ -61,16 +62,22 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAd
                     CQSDKBroadCastActions.overlayImageCaptured -> {
                         // Get extra data from intent
                         val imageCapturedForOverlayId = intent.getStringExtra(CQSDKBroadcastExtrasKey.imageCapturedForOverlayId)
-                        // val overlayImageFileCanonicalPath = intent.getStringExtra(CQSDKBroadcastExtrasKey.overlayImageFileCanonicalPath)
-                        val tempOverlayImageDataObj = intent.getStringExtra(CQSDKBroadcastExtrasKey.overlayImageDataObj)
-                        val overlayImageDataObj = Gson().fromJson(tempOverlayImageDataObj, OverlayImageData::class.java)
+                        val overlayImageFileCanonicalPath = intent.getStringExtra(CQSDKBroadcastExtrasKey.overlayImageFileCanonicalPath)
+                        // val tempOverlayImageDataObj = intent.getStringExtra(CQSDKBroadcastExtrasKey.overlayImageDataObj)
+                        // val overlayImageDataObj = Gson().fromJson(tempOverlayImageDataObj, OverlayImageData::class.java)
+
+                        // Temp var
+                        val overlayImageDataObjTemp = OverlayImageData(
+                            imageFilePath = overlayImageFileCanonicalPath ?: "",
+                            photoFile = File(overlayImageFileCanonicalPath ?: "")
+                        )
 
                         // Iterate through array and add images in the data
                         synchronized(this@CapturedImagesActivity) {
                             for (dataObj in data) {
                                 if (dataObj.overlayId == imageCapturedForOverlayId) {
                                     val tempArr = dataObj.images
-                                    tempArr.add(overlayImageDataObj)
+                                    tempArr.add(overlayImageDataObjTemp)
                                 }
                             }
                         }
