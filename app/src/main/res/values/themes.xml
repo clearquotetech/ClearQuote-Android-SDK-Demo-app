@@ -2,5 +2,6 @@
 <resources>
     <style name="cqSDKDemoApp" parent="cqAndroidSDKTheme">
         <item name="colorAccent">@color/clearquote_color_primary</item>
+        <item name="colorTransparent">@color/transparent</item>
     </style>
 </resources>

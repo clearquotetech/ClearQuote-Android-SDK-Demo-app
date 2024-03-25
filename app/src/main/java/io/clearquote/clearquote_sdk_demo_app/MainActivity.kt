@@ -2,13 +2,16 @@ package io.clearquote.clearquote_sdk_demo_app
 
 import android.annotation.SuppressLint
 import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
 import io.clearquote.assessment.cq_sdk.CQSDKInitializer
-import io.clearquote.assessment.cq_sdk.R
 import io.clearquote.assessment.cq_sdk.datasources.remote.network.datamodels.createQuoteApi.payload.ClientAttrs
 import io.clearquote.assessment.cq_sdk.models.CustomerDetails
 import io.clearquote.assessment.cq_sdk.models.InputDetails
@@ -63,6 +66,9 @@ class MainActivity : AppCompatActivity() {
 
         // Set up UI
         setUpUI()
+
+        // Get material color
+        getMaterialColor(context = this, attr = R.attr.colorTransparent)
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -373,5 +379,15 @@ class MainActivity : AppCompatActivity() {
             e.printStackTrace()
             Toast.makeText(this, "Could not find the target app", Toast.LENGTH_LONG).show()
         }
+    }
+
+    @ColorInt
+    fun getMaterialColor(context: Context, @AttrRes attr: Int): Int {
+        val typedValue = TypedValue()
+        val theme = context.theme
+        // Resolve the attribute to obtain its value
+        theme.resolveAttribute(attr, typedValue, true)
+        // Extract and return the color value
+        return typedValue.data
     }
 }
