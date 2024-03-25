@@ -68,8 +68,7 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAd
 
                         // Temp var
                         val overlayImageDataObjTemp = OverlayImageData(
-                            imageFilePath = overlayImageFileCanonicalPath ?: "",
-                            photoFile = File(overlayImageFileCanonicalPath ?: "")
+                            imageFilePath = overlayImageFileCanonicalPath ?: ""
                         )
 
                         // Iterate through array and add images in the data
@@ -97,9 +96,16 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAd
                         synchronized(this@CapturedImagesActivity) {
                             for (dataObj in data) {
                                 if (dataObj.overlayId == imagesDiscardedForOverlayId) {
-                                    val tempArr = dataObj.images
-                                    for (discardedImage in discardedImagesList) {
-                                        tempArr.remove(discardedImage)
+                                    val indexesToBeDeleted = arrayListOf<Int>()
+                                    for ((imageIndex, image) in dataObj.images.withIndex()) {
+                                        for (imageToBeDeleted in discardedImagesList) {
+                                            if (image.imageFilePath == imageToBeDeleted.imageFilePath) {
+                                                indexesToBeDeleted.add(imageIndex)
+                                            }
+                                        }
+                                    }
+                                    for (index in indexesToBeDeleted) {
+                                        dataObj.images.removeAt(index)
                                     }
                                 }
                             }
@@ -179,7 +185,7 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAd
         // Delete image files from storage
         for (dataObj in data) {
             for (overlayImage in dataObj.images) {
-                overlayImage.photoFile.delete()
+                File(overlayImage.imageFilePath).delete()
             }
         }
 
@@ -254,7 +260,18 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAd
         // Delete image from the SDK data structure
         for (obj in CQSDKInitializer.hMapOfOverlayToImages) {
             if (obj.key == overlayId) {
-                obj.value.remove(overlayImageDataObj)
+                // Search for the index
+                var index1ToBeDeleted: Int? = null
+                for ((index1, image1) in obj.value.withIndex()){
+                    if (image1.imageFilePath == overlayImageDataObj.imageFilePath) {
+                        index1ToBeDeleted =  index1
+                    }
+                }
+
+                // Delete the image using index
+                if (index1ToBeDeleted != null) {
+                    obj.value.removeAt(index1ToBeDeleted)
+                }
             }
         }
 
@@ -262,13 +279,26 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAd
         var updatedIndex = 0
         for ((itemIndex, item) in data.withIndex()) {
             if (item.overlayId == overlayId) {
+                // Check which main index updated
                 updatedIndex = itemIndex
-                item.images.remove(overlayImageDataObj)
+
+                // Search for the index
+                var index2ToBeDeleted: Int? = null
+                for ((index2, image2) in item.images.withIndex()) {
+                    if (image2.imageFilePath == overlayImageDataObj.imageFilePath) {
+                        index2ToBeDeleted = index2
+                    }
+                }
+
+                // Delete the image using index
+                if (index2ToBeDeleted != null) {
+                    item.images.removeAt(index2ToBeDeleted)
+                }
             }
         }
 
         // Delete image file
-        overlayImageDataObj.photoFile.delete()
+        File(overlayImageDataObj.imageFilePath).delete()
 
         // Update RV
         verticalRvAdapter?.notifyItemChanged(updatedIndex)

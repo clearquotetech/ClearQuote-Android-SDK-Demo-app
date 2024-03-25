@@ -10,6 +10,7 @@ import io.clearquote.clearquote_sdk_demo_app.R
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import io.clearquote.assessment.cq_sdk.msilAssets.models.OverlayImageData
+import java.io.File
 
 class HorizontalRvAdapter(
     private val context: Context,
@@ -46,7 +47,7 @@ class HorizontalRvAdapter(
 
         // Load the image
         Glide.with(holder.itemView.context)
-            .load(viewObject.photoFile)
+            .load(File(viewObject.imageFilePath))
             .into(holder.ivImage)
 
         // Add click listener on the delete icon
