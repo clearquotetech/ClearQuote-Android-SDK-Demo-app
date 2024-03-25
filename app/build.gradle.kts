@@ -13,8 +13,8 @@ android {
         applicationId = "io.clearquote.clearquote_sdk_demo_app"
         minSdk = 26
         targetSdk = 34
-        versionCode = 9
-        versionName = "1.9"
+        versionCode = 10
+        versionName = "2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -78,5 +78,5 @@ dependencies {
     implementation("com.google.firebase:firebase-crashlytics")
 
     // Maven local
-    implementation("io.clearquote.assessment.cq_sdk:cq-android-sdk:2.0.9@aar") { isTransitive = true }
+    implementation("io.clearquote.assessment.cq_sdk:cq-android-sdk:2.1.0@aar") { isTransitive = true }
 }
