@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.color.MaterialColors
 import io.clearquote.assessment.cq_sdk.CQSDKInitializer
 import io.clearquote.assessment.cq_sdk.datasources.remote.network.datamodels.createQuoteApi.payload.ClientAttrs
 import io.clearquote.assessment.cq_sdk.models.CustomerDetails
@@ -66,9 +67,6 @@ class MainActivity : AppCompatActivity() {
 
         // Set up UI
         setUpUI()
-
-        // Get material color
-        getMaterialColor(context = this, attr = R.attr.colorTransparent)
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -379,15 +377,5 @@ class MainActivity : AppCompatActivity() {
             e.printStackTrace()
             Toast.makeText(this, "Could not find the target app", Toast.LENGTH_LONG).show()
         }
-    }
-
-    @ColorInt
-    fun getMaterialColor(context: Context, @AttrRes attr: Int): Int {
-        val typedValue = TypedValue()
-        val theme = context.theme
-        // Resolve the attribute to obtain its value
-        theme.resolveAttribute(attr, typedValue, true)
-        // Extract and return the color value
-        return typedValue.data
     }
 }
