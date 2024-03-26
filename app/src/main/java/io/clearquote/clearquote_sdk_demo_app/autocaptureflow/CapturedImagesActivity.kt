@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
@@ -18,7 +19,6 @@ import io.clearquote.assessment.cq_sdk.msilAssets.CQMsilBodystyleToModelCodeMapp
 import io.clearquote.assessment.cq_sdk.msilAssets.models.OverlayImageData
 import io.clearquote.assessment.cq_sdk.singletons.CQSDKBroadCastActions
 import io.clearquote.assessment.cq_sdk.singletons.CQSDKBroadcastExtrasKey
-import io.clearquote.assessment.cq_sdk.view.features.activities.videoinspection.VideoTypeImageCaptureActivity
 import io.clearquote.clearquote_sdk_demo_app.adapters.VerticalRvAdapter
 import io.clearquote.clearquote_sdk_demo_app.databinding.ActivityCapturedImagesBinding
 import io.clearquote.clearquote_sdk_demo_app.models.InspectionData
@@ -31,11 +31,11 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAd
     // Binding
     private lateinit var binding: ActivityCapturedImagesBinding
 
+    // View model
+    private lateinit var viewModel: CapturedImagesActivityViewModel
+
     // CQ SDK initializer
     private lateinit var cqSdkInitializer: CQSDKInitializer
-
-    // Images data
-    private val data = arrayListOf<VerticalAdapterDataItem>()
 
     // Vertical adapter instance
     private var verticalRvAdapter: VerticalRvAdapter? = null
@@ -63,8 +63,6 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAd
                         // Get extra data from intent
                         val imageCapturedForOverlayId = intent.getStringExtra(CQSDKBroadcastExtrasKey.imageCapturedForOverlayId)
                         val overlayImageFileCanonicalPath = intent.getStringExtra(CQSDKBroadcastExtrasKey.overlayImageFileCanonicalPath)
-                        // val tempOverlayImageDataObj = intent.getStringExtra(CQSDKBroadcastExtrasKey.overlayImageDataObj)
-                        // val overlayImageDataObj = Gson().fromJson(tempOverlayImageDataObj, OverlayImageData::class.java)
 
                         // Temp var
                         val overlayImageDataObjTemp = OverlayImageData(
@@ -73,7 +71,7 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAd
 
                         // Iterate through array and add images in the data
                         synchronized(this@CapturedImagesActivity) {
-                            for (dataObj in data) {
+                            for (dataObj in viewModel.data) {
                                 if (dataObj.overlayId == imageCapturedForOverlayId) {
                                     val tempArr = dataObj.images
                                     tempArr.add(overlayImageDataObjTemp)
@@ -94,7 +92,7 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAd
 
                         // Iterate through array and add images in the data
                         synchronized(this@CapturedImagesActivity) {
-                            for (dataObj in data) {
+                            for (dataObj in viewModel.data) {
                                 if (dataObj.overlayId == imagesDiscardedForOverlayId) {
                                     val indexesToBeDeleted = arrayListOf<Int>()
                                     for ((imageIndex, image) in dataObj.images.withIndex()) {
@@ -126,6 +124,7 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAd
         setContentView(binding.root)
 
         // Initialize other members
+        viewModel = ViewModelProvider(this)[CapturedImagesActivityViewModel::class.java]
         cqSdkInitializer = CQSDKInitializer(context = this)
         val tempInspectionData = intent.getStringExtra(IntentExtrasKeys.inspectionDataExtrasKey) ?: "{}"
         inspectionData = try {
@@ -183,7 +182,7 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAd
         unregisterReceiver(broadcastReceiver)
 
         // Delete image files from storage
-        for (dataObj in data) {
+        for (dataObj in viewModel.data) {
             for (overlayImage in dataObj.images) {
                 File(overlayImage.imageFilePath).delete()
             }
@@ -199,7 +198,7 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAd
     private fun setVerticalRv() {
         // Add data items in the data list
         for (obj in liveDetectionDTO.overlays) {
-            data.add(
+            viewModel.data.add(
                 VerticalAdapterDataItem(
                     overlayId = obj.id,
                     mandatory = obj.mandatory,
@@ -211,7 +210,7 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAd
         // Create an instance of vertical items adapter
         verticalRvAdapter = VerticalRvAdapter(
             context = this,
-            data = data,
+            data = viewModel.data,
             eventsListener = this
         )
 
@@ -277,7 +276,7 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAd
 
         // Delete image from the app data structure
         var updatedIndex = 0
-        for ((itemIndex, item) in data.withIndex()) {
+        for ((itemIndex, item) in viewModel.data.withIndex()) {
             if (item.overlayId == overlayId) {
                 // Check which main index updated
                 updatedIndex = itemIndex
