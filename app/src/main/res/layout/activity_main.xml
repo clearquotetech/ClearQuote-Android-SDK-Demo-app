@@ -9,15 +9,15 @@
     android:scrollbars="vertical"
     android:scrollbarSize="@dimen/scroll_bar_size"
     android:scrollbarTrackVertical="@color/scroll_bar_track_color"
-    android:scrollbarThumbVertical="@color/scroll_bar_thumb_color">
+    android:scrollbarThumbVertical="@color/scroll_bar_thumb_color"
+    tools:context=".MainActivity">
 
     <!--Main content-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center"
-        tools:context=".MainActivity">
+        android:gravity="center">
 
         <!--App name-->
         <TextView
@@ -324,7 +324,7 @@
             android:id="@+id/btnLogOut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="?attr/materialButtonOutlinedStyle"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:textColor="@color/red_200"
             app:strokeColor="@color/red_200"
             android:textAllCaps="false"
@@ -338,6 +338,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textAllCaps="false"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeColor="@color/clearquote_color_primary"
             android:text="Open CQ native app" />
 
         <!--Check quote completion status-->
@@ -347,7 +349,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textAllCaps="false"
+            app:strokeColor="@color/clearquote_color_primary"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:text="Check offline quote sync complete status" />
+
+        <!--Start auto capture flow-->
+        <Button
+            android:id="@+id/btnStartAutoCaptureFlow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textAllCaps="false"
+            android:text="Start Auto capture flow" />
 
         <!--Current key-->
         <TextView
