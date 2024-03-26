@@ -94,16 +94,14 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAd
                         synchronized(this@CapturedImagesActivity) {
                             for (dataObj in viewModel.data) {
                                 if (dataObj.overlayId == imagesDiscardedForOverlayId) {
-                                    val indexesToBeDeleted = arrayListOf<Int>()
-                                    for ((imageIndex, image) in dataObj.images.withIndex()) {
+                                    val listIterator = dataObj.images.iterator()
+                                    while(listIterator.iterator().hasNext()) {
                                         for (imageToBeDeleted in discardedImagesList) {
-                                            if (image.imageFilePath == imageToBeDeleted.imageFilePath) {
-                                                indexesToBeDeleted.add(imageIndex)
+                                            val item = listIterator.next()
+                                            if (imageToBeDeleted.imageFilePath == item.imageFilePath) {
+                                                listIterator.remove()
                                             }
                                         }
-                                    }
-                                    for (index in indexesToBeDeleted) {
-                                        dataObj.images.removeAt(index)
                                     }
                                 }
                             }
