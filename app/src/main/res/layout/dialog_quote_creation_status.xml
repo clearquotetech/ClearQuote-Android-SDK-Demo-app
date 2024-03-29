@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    app:cardCornerRadius="@dimen/corner_radius">
+    app:cardCornerRadius="@dimen/cq_sdk_corner_radius">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:id="@+id/tvHeading"
             android:gravity="center"
             android:text="Quote creation status"
-            style="@style/h5_headline" />
+            style="@style/cq_sdk_h5_headline" />
 
         <!--Error message-->
         <TextView
@@ -26,7 +26,7 @@
             android:gravity="center"
             android:layout_marginTop="20dp"
             android:text="Code = \n Message = "
-            style="@style/s1_subtitle" />
+            style="@style/cq_sdk_s1_subtitle" />
 
         <!--Okay button-->
         <Button

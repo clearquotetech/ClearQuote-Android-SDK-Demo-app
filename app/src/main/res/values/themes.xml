@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="cqSDKDemoApp" parent="cqAndroidSDKTheme">
-        <item name="colorAccent">@color/clearquote_color_primary</item>
+    <style name="cqSDKDemoApp" parent="cq_sdk_cqAndroidSDKTheme">
+        <!--<item name="colorAccent">@color/cq_sdk_clearquote_color_primary</item>-->
         <item name="colorTransparent">@color/transparent</item>
     </style>
 </resources>

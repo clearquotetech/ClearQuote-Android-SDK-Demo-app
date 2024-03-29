@@ -7,9 +7,9 @@
     android:fillViewport="true"
     android:fadeScrollbars="false"
     android:scrollbars="vertical"
-    android:scrollbarSize="@dimen/scroll_bar_size"
-    android:scrollbarTrackVertical="@color/scroll_bar_track_color"
-    android:scrollbarThumbVertical="@color/scroll_bar_thumb_color">
+    android:scrollbarSize="@dimen/cq_sdk_scroll_bar_size"
+    android:scrollbarTrackVertical="@color/cq_sdk_scroll_bar_track_color"
+    android:scrollbarThumbVertical="@color/cq_sdk_scroll_bar_thumb_color">
 
     <!--Main content-->
     <LinearLayout
@@ -22,12 +22,12 @@
         <io.clearquote.clearquote_sdk_demo_app.support.SampleView
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@color/clearquote_color_primary"/>
+            android:background="@color/cq_sdk_clearquote_color_primary"/>
 
         <!--App name-->
         <TextView
             android:id="@+id/tvAppName"
-            style="@style/h5_headline"
+            style="@style/cq_sdk_h5_headline"
             android:text="@string/app_name"
             android:layout_marginTop="20dp"
             android:gravity="center" />
@@ -43,7 +43,7 @@
         <!--Client attrs heading-->
         <TextView
             android:id="@+id/tvClientAttrsHeading"
-            style="@style/h6_headline"
+            style="@style/cq_sdk_h6_headline"
             android:text="Client attributes"
             android:layout_marginTop="10dp"/>
 
@@ -133,7 +133,7 @@
         <!--Input details heading-->
         <TextView
             android:id="@+id/tvInputDetailsHeading"
-            style="@style/h6_headline"
+            style="@style/cq_sdk_h6_headline"
             android:layout_marginTop="10dp"
             android:text="Input details" />
 
@@ -330,8 +330,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="?attr/materialButtonOutlinedStyle"
-            android:textColor="@color/red_200"
-            app:strokeColor="@color/red_200"
+            android:textColor="@color/cq_sdk_red_200"
+            app:strokeColor="@color/cq_sdk_red_200"
             android:textAllCaps="false"
             android:layout_marginTop="20dp"
             android:text="Logout"/>
@@ -357,7 +357,7 @@
         <!--Current key-->
         <TextView
             android:id="@+id/tvSdkKeyHeading"
-            style="@style/c1_caption"
+            style="@style/cq_sdk_c1_caption"
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="SDK Key:" />
@@ -365,7 +365,7 @@
         <!--Current key-->
         <TextView
             android:id="@+id/tvDealerCode"
-            style="@style/c1_caption"
+            style="@style/cq_sdk_c1_caption"
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="Dealer Code:" />
@@ -373,7 +373,7 @@
         <!--Current key-->
         <TextView
             android:id="@+id/tvUserName"
-            style="@style/c1_caption"
+            style="@style/cq_sdk_c1_caption"
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="Username:" />
@@ -381,7 +381,7 @@
         <!--CQ SDK version name-->
         <TextView
             android:id="@+id/tvCQSDKVersionName"
-            style="@style/c1_caption"
+            style="@style/cq_sdk_c1_caption"
             android:text=""
             android:gravity="center"
             android:layout_marginTop="20dp"/>
@@ -389,7 +389,7 @@
         <!--App version name-->
         <TextView
             android:id="@+id/tvTestAppVersionName"
-            style="@style/c1_caption"
+            style="@style/cq_sdk_c1_caption"
             android:text=""
             android:gravity="center"
             android:layout_marginTop="20dp"
