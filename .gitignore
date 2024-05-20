@@ -26,3 +26,4 @@ local.properties
 /app/release/output-metadata.json
 /.idea/checkstyle-idea.xml
 /.idea/deploymentTargetSelector.xml
+/.idea/appInsightsSettings.xml
