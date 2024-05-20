@@ -24,3 +24,5 @@ local.properties
 /app/release/app-x86-release.apk
 /app/release/app-x86_64-release.apk
 /app/release/output-metadata.json
+/.idea/checkstyle-idea.xml
+/.idea/deploymentTargetSelector.xml

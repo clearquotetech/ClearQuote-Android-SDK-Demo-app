@@ -19,11 +19,6 @@
         android:gravity="center"
         tools:context=".MainActivity">
 
-        <io.clearquote.clearquote_sdk_demo_app.support.SampleView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/cq_sdk_clearquote_color_primary"/>
-
         <!--App name-->
         <TextView
             android:id="@+id/tvAppName"
