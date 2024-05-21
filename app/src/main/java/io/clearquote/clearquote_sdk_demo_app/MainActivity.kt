@@ -16,6 +16,7 @@ import io.clearquote.assessment.cq_sdk.CQSDKInitializer
 import io.clearquote.assessment.cq_sdk.datasources.remote.network.datamodels.createQuoteApi.payload.ClientAttrs
 import io.clearquote.assessment.cq_sdk.models.CustomerDetails
 import io.clearquote.assessment.cq_sdk.models.InputDetails
+import io.clearquote.assessment.cq_sdk.models.UserFlowParams
 import io.clearquote.assessment.cq_sdk.models.VehicleDetails
 import io.clearquote.assessment.cq_sdk.singletons.PublicConstants
 import io.clearquote.clearquote_sdk_demo_app.databinding.ActivityMainBinding
@@ -120,6 +121,7 @@ class MainActivity : AppCompatActivity() {
 
         // Check if it sdk key was available
         if (!sdkKey.isNullOrEmpty() && sdkKey.isNotBlank()) { // SDK key available
+
             // Hide configure key button
             binding.btnConfigureKey.visibility = View.GONE
             binding.btnConfigureKey.setOnClickListener(null)
@@ -213,6 +215,73 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
+            // Show start inspection : skip input
+            binding.btnStartInspectionWithSkipInput.visibility = View.VISIBLE
+            binding.btnStartInspectionWithSkipInput.setOnClickListener {
+                // Send to sdk initialization activity
+                if (cqSDKInitializer.isCQSDKInitialized()) {
+                    // Show a loading dialog
+                    loadingDialog?.show()
+
+                    // Create an instance of client attrs
+                    val clientAttrs = ClientAttrs(
+                        userName = binding.etUserName.text.toString().trim(),
+                        dealer = binding.etDealer.text.toString().trim(),
+                        dealerIdentifier = binding.etDealerIdentifier.text.toString().trim(),
+                        client_unique_id = binding.etClientUniqueId.text.toString().trim()
+                    )
+
+                    // Customer details
+                    val customerDetails = CustomerDetails(
+                        name = binding.etCustomerName.text.toString(),
+                        email = binding.etCustomerEmail.text.toString(),
+                        dialCode = binding.etCustomerDialCode.text.toString(),
+                        phoneNumber = binding.etCustomerPhoneNumber.text.toString(),
+                    )
+
+                    // Vehicle details
+                    val vehicleDetails = VehicleDetails(
+                        regNumber = binding.etRegNumber.text.toString() ,
+                        make = binding.etMake.text.toString(),
+                        model = binding.etModel.text.toString(),
+                        bodyStyle = binding.etBodyStyle.text.toString()
+                    )
+
+                    // Create an instance of input details
+                    val inputDetails = InputDetails(
+                        vehicleDetails = vehicleDetails,
+                        customerDetails = customerDetails
+                    )
+
+                    // Create an instance of user flow params
+                    val userFlowParams = UserFlowParams(
+                        isOffline = binding.swOfflineMode.isChecked,
+                        skipInputPage = true
+                    )
+
+                    // Make request to start an inspection
+                    cqSDKInitializer.startInspection(
+                        activityContext = this,
+                        clientAttrs = clientAttrs,
+                        inputDetails = inputDetails,
+                        userFlowParams = userFlowParams,
+                        result = { isStarted, msg, code ->
+                            // Show error if required
+                            if (!isStarted) {
+                                // Dismiss the loading dialog
+                                loadingDialog?.dismiss()
+
+                                // Show error
+                                showErrorDialog(message = "message= $msg, code= $code")
+                            }
+                        }
+                    )
+                }
+            }
+
+            // Show offline mode switch
+            binding.llOfflineModeSwitchContainer.visibility = View.VISIBLE
+
             // Show client attrs heading
             binding.tvClientAttrsHeading.visibility = View.VISIBLE
 
@@ -237,7 +306,6 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this@MainActivity, "Result: $it", Toast.LENGTH_LONG).show()
                 }
             }
-
 
             // Show input details heading
             binding.tvInputDetailsHeading.visibility = View.VISIBLE
@@ -293,6 +361,13 @@ class MainActivity : AppCompatActivity() {
             // Hide Start inspection
             binding.btnStartInspection.visibility = View.GONE
             binding.btnStartInspection.setOnClickListener(null)
+
+            // Hide stat inspection : skip input
+            binding.btnStartInspectionWithSkipInput.visibility = View.GONE
+            binding.btnStartInspectionWithSkipInput.setOnClickListener(null)
+
+            // Hide offline mode switch
+            binding.llOfflineModeSwitchContainer.visibility = View.GONE
 
             // Hide client attrs heading
             binding.tvClientAttrsHeading.visibility = View.GONE

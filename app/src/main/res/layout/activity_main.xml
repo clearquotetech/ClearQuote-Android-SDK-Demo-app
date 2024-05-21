@@ -293,6 +293,21 @@
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
+        <!--Online offline switch button selector-->
+        <LinearLayout
+            android:id="@+id/llOfflineModeSwitchContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="10dp">
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/swOfflineMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Offline Mode " />
+        </LinearLayout>
+
         <!--Divider-->
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/md2"
@@ -300,6 +315,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"/>
+
+        <!--Start inspection with existing key and skip input page-->
+        <Button
+            android:id="@+id/btnStartInspectionWithSkipInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:text="Start Inspection : Skip input" />
 
         <!--Start inspection with existing key-->
         <Button
