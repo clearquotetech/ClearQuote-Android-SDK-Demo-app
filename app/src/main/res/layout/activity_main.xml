@@ -316,15 +316,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"/>
 
-        <!--Start inspection with existing key and skip input page-->
-        <Button
-            android:id="@+id/btnStartInspectionWithSkipInput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAllCaps="false"
-            android:layout_marginTop="10dp"
-            android:text="Start Inspection : Skip input" />
-
         <!--Start inspection with existing key-->
         <Button
             android:id="@+id/btnStartInspection"
@@ -333,6 +324,15 @@
             android:textAllCaps="false"
             android:layout_marginTop="10dp"
             android:text="Start Inspection" />
+
+        <!--Start inspection with existing key and skip input page-->
+        <Button
+            android:id="@+id/btnStartInspectionWithSkipInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:text="Start Inspection : Skip input" />
 
         <!--Change key-->
         <Button
@@ -343,18 +343,6 @@
             android:textAllCaps="false"
             android:text="Configure key" />
 
-        <!--Log out-->
-        <Button
-            android:id="@+id/btnLogOut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="?attr/materialButtonOutlinedStyle"
-            android:textColor="@color/cq_sdk_red_200"
-            app:strokeColor="@color/cq_sdk_red_200"
-            android:textAllCaps="false"
-            android:layout_marginTop="20dp"
-            android:text="Logout"/>
-
         <!--Open CQ native android app-->
         <Button
             android:id="@+id/btnOpenCqNativeApp"
@@ -362,6 +350,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textAllCaps="false"
+            style="?attr/materialButtonOutlinedStyle"
+            app:strokeColor="@color/primary_color"
             android:text="Open CQ native app" />
 
         <!--Check quote completion status-->
@@ -371,6 +361,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textAllCaps="false"
+            style="?attr/materialButtonOutlinedStyle"
+            app:strokeColor="@color/primary_color"
             android:text="Check offline quote sync complete status" />
 
         <!--Current key-->
@@ -411,7 +403,19 @@
             style="@style/cq_sdk_c1_caption"
             android:text=""
             android:gravity="center"
+            android:layout_marginTop="20dp" />
+
+        <!--Log out-->
+        <Button
+            android:id="@+id/btnLogOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?attr/materialButtonOutlinedStyle"
+            android:textColor="@color/cq_sdk_red_200"
+            app:strokeColor="@color/cq_sdk_red_200"
+            android:textAllCaps="false"
             android:layout_marginTop="20dp"
+            android:text="Logout"
             android:layout_marginBottom="20dp"/>
     </LinearLayout>
 </ScrollView>
