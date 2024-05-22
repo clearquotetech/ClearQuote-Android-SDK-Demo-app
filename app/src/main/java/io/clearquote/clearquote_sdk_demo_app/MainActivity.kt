@@ -202,7 +202,7 @@ class MainActivity : AppCompatActivity() {
 
                     // Make request to start an inspection
                     cqSDKInitializer.startInspection(
-                        activityContext = this,
+                        activity = this,
                         clientAttrs = clientAttrs,
                         inputDetails = inputDetails,
                         result = { isStarted, msg, code ->
@@ -265,7 +265,7 @@ class MainActivity : AppCompatActivity() {
 
                     // Make request to start an inspection
                     cqSDKInitializer.startInspection(
-                        activityContext = this,
+                        activity = this,
                         clientAttrs = clientAttrs,
                         inputDetails = inputDetails,
                         userFlowParams = userFlowParams,
