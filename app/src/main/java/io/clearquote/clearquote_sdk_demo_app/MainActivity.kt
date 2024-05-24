@@ -58,6 +58,9 @@ class MainActivity : AppCompatActivity() {
         binding.btnOpenCqNativeApp.setOnClickListener {
             openCqNativeApp()
         }
+
+        // Trigger sync of offline inspections
+        cqSDKInitializer.triggerOfflineSync()
     }
 
     override fun onResume() {

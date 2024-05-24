@@ -233,7 +233,7 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAd
 
         // Navigate user to auto image capture page
         cqSdkInitializer.startAutoCapture(
-            activityContext = this,
+            activity = this,
             modelCode = inspectionData?.modelCode ?: "",
             overlayId = overlayId,
             result = { cqCameraInvokeResult ->
