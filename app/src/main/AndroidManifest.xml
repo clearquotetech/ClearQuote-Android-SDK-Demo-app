@@ -13,12 +13,27 @@
         android:theme="@style/cqSDKDemoApp"
         tools:targetApi="31">
         <activity
+            android:name=".autocaptureflow.CapturedImagesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity" />
+        <activity
+            android:name=".autocaptureflow.InputActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity" />
+        <activity
             android:name=".SdkInitializationActivity"
-            android:exported="false"/>
+            android:exported="false"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

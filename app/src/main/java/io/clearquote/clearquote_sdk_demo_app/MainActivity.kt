@@ -2,17 +2,12 @@ package io.clearquote.clearquote_sdk_demo_app
 
 import android.annotation.SuppressLint
 import android.content.ComponentName
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.util.TypedValue
 import android.view.View
 import android.widget.Toast
-import androidx.annotation.AttrRes
-import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.color.MaterialColors
 import io.clearquote.assessment.cq_sdk.CQSDKInitializer
 import io.clearquote.assessment.cq_sdk.datasources.remote.network.datamodels.createQuoteApi.payload.ClientAttrs
 import io.clearquote.assessment.cq_sdk.models.CustomerDetails
@@ -20,6 +15,7 @@ import io.clearquote.assessment.cq_sdk.models.InputDetails
 import io.clearquote.assessment.cq_sdk.models.UserFlowParams
 import io.clearquote.assessment.cq_sdk.models.VehicleDetails
 import io.clearquote.assessment.cq_sdk.singletons.PublicConstants
+import io.clearquote.clearquote_sdk_demo_app.autocaptureflow.InputActivity
 import io.clearquote.clearquote_sdk_demo_app.databinding.ActivityMainBinding
 import io.clearquote.clearquote_sdk_demo_app.support.ErrorDialog
 import io.clearquote.clearquote_sdk_demo_app.support.LoadingDialog
@@ -311,6 +307,14 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
+            // Show auto capture button
+            binding.btnStartAutoCaptureFlow.visibility = View.VISIBLE
+
+            // Add click listener on the start auto capture button
+            binding.btnStartAutoCaptureFlow.setOnClickListener{
+                startAutoCaptureFlow()
+            }
+
             // Show input details heading
             binding.tvInputDetailsHeading.visibility = View.VISIBLE
 
@@ -388,11 +392,13 @@ class MainActivity : AppCompatActivity() {
             // Hide client unique id input field
             binding.tlClientUniqueId.visibility = View.GONE
 
-            // Unset click listener from the check quote sync complete status button
+            // Hide offline quote sync complete status button
+            binding.btnOfflineQuoteSyncCompleteStatus.visibility = View.GONE
             binding.btnOfflineQuoteSyncCompleteStatus.setOnClickListener(null)
 
-            // Hide offline quote sync complete status
-            binding.btnOfflineQuoteSyncCompleteStatus.visibility = View.GONE
+            // Hide auto capture button
+            binding.btnStartAutoCaptureFlow.visibility = View.GONE
+            binding.btnStartAutoCaptureFlow.setOnClickListener(null)
 
             // Hide input details heading
             binding.tvInputDetailsHeading.visibility = View.GONE
@@ -455,6 +461,18 @@ class MainActivity : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
             Toast.makeText(this, "Could not find the target app", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun startAutoCaptureFlow() {
+        // CQ SDK is initialized
+        if (cqSDKInitializer.isCQSDKInitialized()) {
+            startActivity(Intent(this, InputActivity::class.java))
+        }
+
+        // SDK is not initialized
+        else {
+            Toast.makeText(this, "SDK is not initialized", Toast.LENGTH_LONG).show()
         }
     }
 }

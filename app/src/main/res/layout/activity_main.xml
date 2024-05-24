@@ -365,6 +365,17 @@
             app:strokeColor="@color/primary_color"
             android:text="Check offline quote sync complete status" />
 
+        <!--Start auto capture flow-->
+        <Button
+            android:id="@+id/btnStartAutoCaptureFlow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textAllCaps="false"
+            style="?attr/materialButtonOutlinedStyle"
+            app:strokeColor="@color/primary_color"
+            android:text="Start Auto capture flow" />
+
         <!--Current key-->
         <TextView
             android:id="@+id/tvSdkKeyHeading"
