@@ -199,11 +199,18 @@ class MainActivity : AppCompatActivity() {
                         customerDetails = customerDetails
                     )
 
+                    // Create an instance of user flow params
+                    val userFlowParams = UserFlowParams(
+                        isOffline = binding.swOfflineMode.isChecked,
+                        skipInputPage = false
+                    )
+
                     // Make request to start an inspection
                     cqSDKInitializer.startInspection(
                         activity = this,
                         clientAttrs = clientAttrs,
                         inputDetails = inputDetails,
+                        userFlowParams = userFlowParams,
                         result = { isStarted, msg, code ->
                             // Show error if required
                             if (!isStarted) {

@@ -78,4 +78,7 @@ dependencies {
 
     // Maven local
     implementation("io.clearquote.assessment.cq_sdk:cq-android-sdk:2.1.8@aar") { isTransitive = true }
+
+    // Leak canary
+    debugImplementation ("com.squareup.leakcanary:leakcanary-android:2.14")
 }
