@@ -3,6 +3,7 @@ package io.clearquote.clearquote_sdk_demo_app
 import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -132,21 +133,7 @@ class MainActivity : AppCompatActivity() {
             // Show log out button
             binding.btnLogOut.visibility = View.VISIBLE
             binding.btnLogOut.setOnClickListener {
-                // Show a loading dialog
-                clearingSDKDataLoadingDialog?.show()
-
-                // Clear data from SDK
-                CoroutineScope(Dispatchers.IO).launch {
-                    // Clear SDK data
-                    cqSDKInitializer.logOut()
-
-                    // Close loading dialog
-                    CoroutineScope(Dispatchers.Main).launch {
-                        sharedPreferences.edit().clear().apply()
-                        clearingSDKDataLoadingDialog?.dismiss()
-                        setUpUI()
-                    }
-                }
+                logout(sharedPreferences = sharedPreferences)
             }
 
             // Show Sdk key heading
@@ -483,6 +470,40 @@ class MainActivity : AppCompatActivity() {
         // SDK is not initialized
         else {
             Toast.makeText(this, "SDK is not initialized", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun logout(sharedPreferences: SharedPreferences) {
+        // Show a loading dialog
+        clearingSDKDataLoadingDialog?.show()
+
+        // Clear data from SDK
+        CoroutineScope(Dispatchers.IO).launch {
+            // Clear SDK data
+            cqSDKInitializer.logOut()
+
+            // Close loading dialog
+            CoroutineScope(Dispatchers.Main).launch {
+                // Clear input fields
+                binding.etUserName.setText("")
+                binding.etDealer.setText("")
+                binding.etDealerIdentifier.setText("")
+                binding.etClientUniqueId.setText("")
+                binding.etRegNumber.setText("")
+                binding.etMake.setText("")
+                binding.etModel.setText("")
+                binding.etBodyStyle.setText("")
+                binding.etCustomerName.setText("")
+                binding.etCustomerEmail.setText("")
+                binding.etCustomerDialCode.setText("")
+                binding.etCustomerPhoneNumber.setText("")
+                binding.swOfflineMode.isChecked = false
+
+                // Other
+                sharedPreferences.edit().clear().apply()
+                clearingSDKDataLoadingDialog?.dismiss()
+                setUpUI()
+            }
         }
     }
 }
