@@ -216,6 +216,63 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
+            // Show start inspection with offline mode selection is upto the user
+            binding.btnStartInspectionOfflineModeSelectionIsUpToTheUser.visibility = View.VISIBLE
+            binding.btnStartInspectionOfflineModeSelectionIsUpToTheUser.setOnClickListener {
+                // Send to sdk initialization activity
+                if (cqSDKInitializer.isCQSDKInitialized()) {
+                    // Show a loading dialog
+                    loadingDialog?.show()
+
+                    // Create an instance of client attrs
+                    val clientAttrs = ClientAttrs(
+                        userName = binding.etUserName.text.toString().trim(),
+                        dealer = binding.etDealer.text.toString().trim(),
+                        dealerIdentifier = binding.etDealerIdentifier.text.toString().trim(),
+                        client_unique_id = binding.etClientUniqueId.text.toString().trim()
+                    )
+
+                    // Customer details
+                    val customerDetails = CustomerDetails(
+                        name = binding.etCustomerName.text.toString(),
+                        email = binding.etCustomerEmail.text.toString(),
+                        dialCode = binding.etCustomerDialCode.text.toString(),
+                        phoneNumber = binding.etCustomerPhoneNumber.text.toString(),
+                    )
+
+                    // Vehicle details
+                    val vehicleDetails = VehicleDetails(
+                        regNumber = binding.etRegNumber.text.toString() ,
+                        make = binding.etMake.text.toString(),
+                        model = binding.etModel.text.toString(),
+                        bodyStyle = binding.etBodyStyle.text.toString()
+                    )
+
+                    // Create an instance of input details
+                    val inputDetails = InputDetails(
+                        vehicleDetails = vehicleDetails,
+                        customerDetails = customerDetails
+                    )
+
+                    // Make request to start an inspection
+                    cqSDKInitializer.startInspection(
+                        activity = this,
+                        clientAttrs = clientAttrs,
+                        inputDetails = inputDetails,
+                        result = { isStarted, msg, code ->
+                            // Show error if required
+                            if (!isStarted) {
+                                // Dismiss the loading dialog
+                                loadingDialog?.dismiss()
+
+                                // Show error
+                                showErrorDialog(message = "message= $msg, code= $code")
+                            }
+                        }
+                    )
+                }
+            }
+
             // Show start inspection : skip input
             binding.btnStartInspectionWithSkipInput.visibility = View.VISIBLE
             binding.btnStartInspectionWithSkipInput.setOnClickListener {
@@ -370,6 +427,10 @@ class MainActivity : AppCompatActivity() {
             // Hide Start inspection
             binding.btnStartInspection.visibility = View.GONE
             binding.btnStartInspection.setOnClickListener(null)
+
+            // Hide start inspection with offline mode selection is upto the user
+            binding.btnStartInspectionOfflineModeSelectionIsUpToTheUser.visibility = View.GONE
+            binding.btnStartInspectionOfflineModeSelectionIsUpToTheUser.setOnClickListener(null)
 
             // Hide stat inspection : skip input
             binding.btnStartInspectionWithSkipInput.visibility = View.GONE

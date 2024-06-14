@@ -316,7 +316,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"/>
 
-        <!--Start inspection with existing key-->
+        <!--Start inspection with strict offline mode existing key-->
         <Button
             android:id="@+id/btnStartInspection"
             android:layout_width="wrap_content"
@@ -324,6 +324,17 @@
             android:textAllCaps="false"
             android:layout_marginTop="10dp"
             android:text="Start Inspection" />
+
+        <!--Start inspection with offline mode selection-->
+        <Button
+            android:id="@+id/btnStartInspectionOfflineModeSelectionIsUpToTheUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:text="Start Inspection : Offline mode selection is upto the user" />
+
+
 
         <!--Start inspection with existing key and skip input page-->
         <Button
