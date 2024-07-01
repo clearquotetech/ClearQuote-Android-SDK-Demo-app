@@ -41,6 +41,11 @@
             </intent-filter>
         </activity>
 
+        <!-- Crashlytics -->
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="true" />
+
         <!--In file provider if you change the authorities then change here as well-->
         <provider
             android:name="androidx.core.content.FileProvider"
