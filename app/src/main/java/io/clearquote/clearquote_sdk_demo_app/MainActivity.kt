@@ -13,6 +13,7 @@ import io.clearquote.assessment.cq_sdk.CQSDKInitializer
 import io.clearquote.assessment.cq_sdk.datasources.remote.network.datamodels.createQuoteApi.payload.ClientAttrs
 import io.clearquote.assessment.cq_sdk.models.CustomerDetails
 import io.clearquote.assessment.cq_sdk.models.InputDetails
+import io.clearquote.assessment.cq_sdk.models.QuoteData
 import io.clearquote.assessment.cq_sdk.models.UserFlowParams
 import io.clearquote.assessment.cq_sdk.models.VehicleDetails
 import io.clearquote.assessment.cq_sdk.singletons.PublicConstants
@@ -181,13 +182,22 @@ class MainActivity : AppCompatActivity() {
                         regNumber = binding.etRegNumber.text.toString() ,
                         make = binding.etMake.text.toString(),
                         model = binding.etModel.text.toString(),
-                        bodyStyle = binding.etBodyStyle.text.toString()
+                        bodyStyle = binding.etBodyStyle.text.toString(),
+                        variant = binding.etVariant.text.toString(),
+                        fuelType = binding.etFuelType.text.toString()
+                    )
+
+                    // Quote data
+                    val quoteData = QuoteData(
+                        fleetImageType = binding.etFleetImageType.text.toString(),
+                        inspectionType = binding.etInspectionType.text.toString()
                     )
 
                     // Create an instance of input details
                     val inputDetails = InputDetails(
                         vehicleDetails = vehicleDetails,
-                        customerDetails = customerDetails
+                        customerDetails = customerDetails,
+                        quoteData = quoteData
                     )
 
                     // Create an instance of user flow params
@@ -245,13 +255,22 @@ class MainActivity : AppCompatActivity() {
                         regNumber = binding.etRegNumber.text.toString() ,
                         make = binding.etMake.text.toString(),
                         model = binding.etModel.text.toString(),
-                        bodyStyle = binding.etBodyStyle.text.toString()
+                        bodyStyle = binding.etBodyStyle.text.toString(),
+                        fuelType = binding.etFuelType.text.toString(),
+                        variant = binding.etVariant.text.toString()
+                    )
+
+                    // Quote data
+                    val quoteData = QuoteData(
+                        inspectionType = binding.etInspectionType.text.toString(),
+                        fleetImageType = binding.etFleetImageType.text.toString()
                     )
 
                     // Create an instance of input details
                     val inputDetails = InputDetails(
                         vehicleDetails = vehicleDetails,
-                        customerDetails = customerDetails
+                        customerDetails = customerDetails,
+                        quoteData = quoteData
                     )
 
                     // Make request to start an inspection
@@ -302,13 +321,22 @@ class MainActivity : AppCompatActivity() {
                         regNumber = binding.etRegNumber.text.toString() ,
                         make = binding.etMake.text.toString(),
                         model = binding.etModel.text.toString(),
-                        bodyStyle = binding.etBodyStyle.text.toString()
+                        bodyStyle = binding.etBodyStyle.text.toString(),
+                        fuelType = binding.etFuelType.text.toString(),
+                        variant = binding.etVariant.text.toString()
+                    )
+
+                    // Quote data
+                    val quoteData = QuoteData(
+                        inspectionType = binding.etInspectionType.text.toString(),
+                        fleetImageType = binding.etFleetImageType.text.toString()
                     )
 
                     // Create an instance of input details
                     val inputDetails = InputDetails(
                         vehicleDetails = vehicleDetails,
-                        customerDetails = customerDetails
+                        customerDetails = customerDetails,
+                        quoteData = quoteData
                     )
 
                     // Create an instance of user flow params
@@ -387,6 +415,18 @@ class MainActivity : AppCompatActivity() {
 
             // Show bodystyle ip
             binding.tlBodyStyle.visibility = View.VISIBLE
+
+            // Show variant ip
+            binding.tlVariant.visibility = View.VISIBLE
+
+            // Show fuel type ip
+            binding.tlFuelType.visibility = View.VISIBLE
+
+            // Show inspection type ip
+            binding.tlInspectionType.visibility = View.VISIBLE
+
+            // Show fleet image type ip
+            binding.tlFleetImageType.visibility = View.VISIBLE
 
             // Show customer name ip
             binding.tlCustomerName.visibility = View.VISIBLE
@@ -476,6 +516,18 @@ class MainActivity : AppCompatActivity() {
 
             // Hide bodystyle ip
             binding.tlBodyStyle.visibility = View.GONE
+
+            // Hide variant ip
+            binding.tlVariant.visibility = View.GONE
+
+            // Hide fuel type ip
+            binding.tlFuelType.visibility = View.GONE
+
+            // Hide inspection type ip
+            binding.tlInspectionType.visibility = View.GONE
+
+            // Hide fleet image type ip
+            binding.tlFleetImageType.visibility = View.GONE
 
             // Hide customer name ip
             binding.tlCustomerName.visibility = View.GONE

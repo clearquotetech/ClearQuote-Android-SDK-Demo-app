@@ -50,10 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="Enter Username"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Enter Username">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etUserName"
                 android:layout_width="match_parent"
@@ -69,10 +66,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
-            android:hint="Enter Dealer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Enter Dealer">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etDealer"
                 android:layout_width="match_parent"
@@ -88,10 +82,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
-            android:hint="Enter Dealer Identifier"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Enter Dealer Identifier">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etDealerIdentifier"
                 android:layout_width="match_parent"
@@ -107,10 +98,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
-            android:hint="Enter Client Unique Id"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Enter Client Unique Id">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etClientUniqueId"
                 android:layout_width="match_parent"
@@ -140,10 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="Enter Registration Number"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Enter Registration Number">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etRegNumber"
                 android:layout_width="match_parent"
@@ -159,10 +144,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="20dp"
-            android:hint="Enter Make"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Enter Make">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etMake"
                 android:layout_width="match_parent"
@@ -178,10 +160,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="Enter Model"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Enter Model">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etModel"
                 android:layout_width="match_parent"
@@ -197,12 +176,73 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="Enter Bodystyle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Enter Bodystyle">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etBodyStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Variant-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlVariant"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Variant">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etVariant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Fuel type-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlFuelType"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Fuel Type">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etFuelType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Inspection type-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlInspectionType"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Inspection Type">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etInspectionType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Fleet image type-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlFleetImageType"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Fleet Image Type">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etFleetImageType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -216,10 +256,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="Enter Customer Name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Enter Customer Name">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etCustomerName"
                 android:layout_width="match_parent"
@@ -235,10 +272,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="Enter Customer Email"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Enter Customer Email">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etCustomerEmail"
                 android:layout_width="match_parent"
@@ -263,10 +297,7 @@
                 android:layout_weight="0.4"
                 android:layout_marginEnd="20dp"
                 android:layout_height="wrap_content"
-                android:hint="Dial code"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:hint="Dial code">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etCustomerDialCode"
                     android:layout_width="match_parent"
@@ -281,10 +312,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:hint="Phone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:hint="Phone">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etCustomerPhoneNumber"
                     android:layout_width="match_parent"
