@@ -27,3 +27,4 @@ local.properties
 /.idea/checkstyle-idea.xml
 /.idea/deploymentTargetSelector.xml
 /.idea/appInsightsSettings.xml
+/.idea/other.xml
