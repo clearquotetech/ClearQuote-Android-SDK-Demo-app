@@ -7,9 +7,9 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="false"
         android:fullBackupOnly="false"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/clearquote_launcher_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/clearquote_launcher_icon"
         android:supportsRtl="true"
         android:theme="@style/cqSDKDemoApp"
         tools:targetApi="31">

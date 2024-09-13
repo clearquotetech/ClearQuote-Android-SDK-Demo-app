@@ -48,15 +48,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    splits {
-        abi {
-            isEnable = true
-            reset()
-            include("x86", "x86_64", "armeabi", "armeabi-v7a", "mips", "mips64", "arm64-v8a")
-            isUniversalApk = false
-        }
-    }
-
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -77,7 +68,7 @@ dependencies {
     implementation("com.google.firebase:firebase-crashlytics")
 
     // Maven local
-    implementation("io.clearquote.assessment.cq_sdk:cq-android-sdk:2.2.9@aar") { isTransitive = true }
+    implementation("io.clearquote.assessment.cq_sdk:cq-android-sdk:2.3.0@aar") { isTransitive = true }
 
     // Leak canary
     debugImplementation ("com.squareup.leakcanary:leakcanary-android:2.14")
