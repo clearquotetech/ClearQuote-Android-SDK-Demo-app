@@ -184,7 +184,8 @@ class MainActivity : AppCompatActivity() {
                         model = binding.etModel.text.toString(),
                         bodyStyle = binding.etBodyStyle.text.toString(),
                         variant = binding.etVariant.text.toString(),
-                        fuelType = binding.etFuelType.text.toString()
+                        fuelType = binding.etFuelType.text.toString(),
+                        vin = binding.etVin.text.toString()
                     )
 
                     // Quote data
@@ -257,7 +258,8 @@ class MainActivity : AppCompatActivity() {
                         model = binding.etModel.text.toString(),
                         bodyStyle = binding.etBodyStyle.text.toString(),
                         fuelType = binding.etFuelType.text.toString(),
-                        variant = binding.etVariant.text.toString()
+                        variant = binding.etVariant.text.toString(),
+                        vin = binding.etVin.text.toString()
                     )
 
                     // Quote data
@@ -323,7 +325,8 @@ class MainActivity : AppCompatActivity() {
                         model = binding.etModel.text.toString(),
                         bodyStyle = binding.etBodyStyle.text.toString(),
                         fuelType = binding.etFuelType.text.toString(),
-                        variant = binding.etVariant.text.toString()
+                        variant = binding.etVariant.text.toString(),
+                        vin = binding.etVin.text.toString()
                     )
 
                     // Quote data
@@ -418,6 +421,9 @@ class MainActivity : AppCompatActivity() {
 
             // Show variant ip
             binding.tlVariant.visibility = View.VISIBLE
+
+            // Show vin ip
+            binding.tlVin.visibility = View.VISIBLE
 
             // Show fuel type ip
             binding.tlFuelType.visibility = View.VISIBLE
@@ -520,6 +526,9 @@ class MainActivity : AppCompatActivity() {
             // Hide variant ip
             binding.tlVariant.visibility = View.GONE
 
+            // Hide vin ip
+            binding.tlVin.visibility = View.GONE
+
             // Hide fuel type ip
             binding.tlFuelType.visibility = View.GONE
 
@@ -610,6 +619,11 @@ class MainActivity : AppCompatActivity() {
                 binding.etMake.setText("")
                 binding.etModel.setText("")
                 binding.etBodyStyle.setText("")
+                binding.etVariant.setText("")
+                binding.etVin.setText("")
+                binding.etFuelType.setText("")
+                binding.etInspectionType.setText("")
+                binding.etFleetImageType.setText("")
                 binding.etCustomerName.setText("")
                 binding.etCustomerEmail.setText("")
                 binding.etCustomerDialCode.setText("")
