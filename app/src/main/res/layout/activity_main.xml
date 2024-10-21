@@ -183,6 +183,54 @@
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!--Model code-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlModelCode"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Model Code">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etModelCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Model group-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlModelGroup"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Model Group">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etModelGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Vehicle exterior color-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlVehicleExteriorColor"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Vehicle Exterior Color">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etVehicleExteriorColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <!--Variant-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tlVariant"

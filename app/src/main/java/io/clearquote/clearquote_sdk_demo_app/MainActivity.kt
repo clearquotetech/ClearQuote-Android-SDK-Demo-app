@@ -185,7 +185,10 @@ class MainActivity : AppCompatActivity() {
                         bodyStyle = binding.etBodyStyle.text.toString(),
                         variant = binding.etVariant.text.toString(),
                         fuelType = binding.etFuelType.text.toString(),
-                        vin = binding.etVin.text.toString()
+                        vin = binding.etVin.text.toString(),
+                        modelCode = binding.etModelCode.text.toString(),
+                        modelGroup = binding.etModelGroup.text.toString(),
+                        vehicleExteriorColor = binding.etVehicleExteriorColor.text.toString()
                     )
 
                     // Quote data
@@ -259,7 +262,10 @@ class MainActivity : AppCompatActivity() {
                         bodyStyle = binding.etBodyStyle.text.toString(),
                         fuelType = binding.etFuelType.text.toString(),
                         variant = binding.etVariant.text.toString(),
-                        vin = binding.etVin.text.toString()
+                        vin = binding.etVin.text.toString(),
+                        modelCode = binding.etModelCode.text.toString(),
+                        modelGroup = binding.etModelGroup.text.toString(),
+                        vehicleExteriorColor = binding.etVehicleExteriorColor.text.toString()
                     )
 
                     // Quote data
@@ -326,7 +332,10 @@ class MainActivity : AppCompatActivity() {
                         bodyStyle = binding.etBodyStyle.text.toString(),
                         fuelType = binding.etFuelType.text.toString(),
                         variant = binding.etVariant.text.toString(),
-                        vin = binding.etVin.text.toString()
+                        vin = binding.etVin.text.toString(),
+                        modelCode = binding.etModelCode.text.toString(),
+                        modelGroup = binding.etModelGroup.text.toString(),
+                        vehicleExteriorColor = binding.etVehicleExteriorColor.text.toString()
                     )
 
                     // Quote data
@@ -418,6 +427,15 @@ class MainActivity : AppCompatActivity() {
 
             // Show bodystyle ip
             binding.tlBodyStyle.visibility = View.VISIBLE
+
+            // Show model code ip
+            binding.tlModelCode.visibility = View.VISIBLE
+
+            // Show model group ip
+            binding.tlModelGroup.visibility = View.VISIBLE
+
+            // Show vehicle exterior color ip
+            binding.tlVehicleExteriorColor.visibility = View.VISIBLE
 
             // Show variant ip
             binding.tlVariant.visibility = View.VISIBLE
@@ -523,6 +541,15 @@ class MainActivity : AppCompatActivity() {
             // Hide bodystyle ip
             binding.tlBodyStyle.visibility = View.GONE
 
+            // Hide model code ip
+            binding.tlModelCode.visibility = View.GONE
+
+            // Hide model group ip
+            binding.tlModelGroup.visibility = View.GONE
+
+            // Hide vehicle exterior color ip
+            binding.tlVehicleExteriorColor.visibility = View.GONE
+
             // Hide variant ip
             binding.tlVariant.visibility = View.GONE
 
@@ -619,6 +646,9 @@ class MainActivity : AppCompatActivity() {
                 binding.etMake.setText("")
                 binding.etModel.setText("")
                 binding.etBodyStyle.setText("")
+                binding.etModelCode.setText("")
+                binding.etModelGroup.setText("")
+                binding.etVehicleExteriorColor.setText("")
                 binding.etVariant.setText("")
                 binding.etVin.setText("")
                 binding.etFuelType.setText("")
