@@ -17,8 +17,8 @@ import io.clearquote.assessment.cq_sdk.CQSDKInitializer
 import io.clearquote.assessment.cq_sdk.datasources.remote.network.datamodels.overlaysApi.response.LiveDetectionDTO
 import io.clearquote.assessment.cq_sdk.msilAssets.CQMsilBodystyleToModelCodeMapping.getLiveDetectionDTOBasisModelCode
 import io.clearquote.assessment.cq_sdk.msilAssets.models.OverlayImageData
-import io.clearquote.assessment.cq_sdk.singletons.CQSDKBroadCastActions
-import io.clearquote.assessment.cq_sdk.singletons.CQSDKBroadcastExtrasKey
+import io.clearquote.assessment.cq_sdk.singletons.others.CQSDKBroadCastActions
+import io.clearquote.assessment.cq_sdk.singletons.others.CQSDKBroadcastExtrasKey
 import io.clearquote.clearquote_sdk_demo_app.adapters.VerticalRvAdapter
 import io.clearquote.clearquote_sdk_demo_app.databinding.ActivityCapturedImagesBinding
 import io.clearquote.clearquote_sdk_demo_app.models.InspectionData
@@ -61,7 +61,8 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAd
                 when (intent.action) {
                     CQSDKBroadCastActions.overlayImageCaptured -> {
                         // Get extra data from intent
-                        val imageCapturedForOverlayId = intent.getStringExtra(CQSDKBroadcastExtrasKey.imageCapturedForOverlayId)
+                        val imageCapturedForOverlayId = intent.getStringExtra(
+                            CQSDKBroadcastExtrasKey.imageCapturedForOverlayId)
                         val overlayImageFileCanonicalPath = intent.getStringExtra(CQSDKBroadcastExtrasKey.overlayImageFileCanonicalPath)
 
                         // Temp var

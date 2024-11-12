@@ -16,7 +16,8 @@ import io.clearquote.assessment.cq_sdk.models.InputDetails
 import io.clearquote.assessment.cq_sdk.models.QuoteData
 import io.clearquote.assessment.cq_sdk.models.UserFlowParams
 import io.clearquote.assessment.cq_sdk.models.VehicleDetails
-import io.clearquote.assessment.cq_sdk.singletons.PublicConstants
+import io.clearquote.assessment.cq_sdk.singletons.others.PublicConstants
+
 import io.clearquote.clearquote_sdk_demo_app.autocaptureflow.InputActivity
 import io.clearquote.clearquote_sdk_demo_app.databinding.ActivityMainBinding
 import io.clearquote.clearquote_sdk_demo_app.support.ErrorDialog
