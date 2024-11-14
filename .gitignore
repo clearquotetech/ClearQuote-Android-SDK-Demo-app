@@ -28,3 +28,4 @@ local.properties
 /.idea/deploymentTargetSelector.xml
 /.idea/appInsightsSettings.xml
 /.idea/other.xml
+/app/release/app-release.apk
