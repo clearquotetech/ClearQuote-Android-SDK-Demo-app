@@ -9,9 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import io.clearquote.assessment.cq_sdk.R
 import io.clearquote.assessment.cq_sdk.msilAssets.models.OverlayImageData
 import io.clearquote.clearquote_sdk_demo_app.models.VerticalAdapterDataItem
+import io.clearquote.clearquote_sdk_demo_app.R
 
 class VerticalRvAdapter(
     private val context: Context,
@@ -38,7 +38,7 @@ class VerticalRvAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VerticalRvViewHolder {
         return VerticalRvViewHolder(
             LayoutInflater.from(context)
-                .inflate(R.layout.upload_images_main_rv_row_item, parent, false), eventsListener
+                .inflate(R.layout.app_upload_images_main_rv_row_item, parent, false), eventsListener
         )
     }
 
