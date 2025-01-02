@@ -311,6 +311,37 @@
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!--Source-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlSource"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Source">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSource"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Washing required switch button selector-->
+        <LinearLayout
+            android:id="@+id/llWashingRequiredSwitchContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="10dp">
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/swWashingRequired"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Washing Required " />
+        </LinearLayout>
+
         <!--Customer name-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tlCustomerName"

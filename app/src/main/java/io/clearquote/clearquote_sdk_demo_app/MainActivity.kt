@@ -17,7 +17,6 @@ import io.clearquote.assessment.cq_sdk.models.QuoteData
 import io.clearquote.assessment.cq_sdk.models.UserFlowParams
 import io.clearquote.assessment.cq_sdk.models.VehicleDetails
 import io.clearquote.assessment.cq_sdk.singletons.others.PublicConstants
-
 import io.clearquote.clearquote_sdk_demo_app.autocaptureflow.InputActivity
 import io.clearquote.clearquote_sdk_demo_app.databinding.ActivityMainBinding
 import io.clearquote.clearquote_sdk_demo_app.support.ErrorDialog
@@ -80,25 +79,32 @@ class MainActivity : AppCompatActivity() {
             val uriIdentifier = intent.data
             val identifier = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusIdentifierKeyInIntent) ?: "Could not identify Identifier"
             val message = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusMsgKeyInIntent) ?: "Could not identify status message"
-            val tempCode = intent.getIntExtra(PublicConstants.quoteCreationFlowStatusCodeKeyInIntent, -1)
+            val code = intent.getIntExtra(PublicConstants.quoteCreationFlowStatusCodeKeyInIntent, -1)
+            
+            // Extra fields
+            val inspectionReportUrl = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusInspectionReportUrlKeyInIntent)
+            val quoteDocId = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusQuoteDocIdKeyInIntent)
+            val inspectionRequestId = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusInspectionRequestIdKeyInIntent)
+            val fuelLevel = intent.getIntExtra(PublicConstants.quoteCreationFlowStatusFuelLevelIdKeyInIntent, -1)
+            val extCleanScore = intent.getIntExtra(PublicConstants.quoteCreationFlowStatusExtCleanScoreKeyInIntent, -1)
+            val extDmgStatus = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusExtDmgStatusKeyInIntent)
 
             // Check if identifier is valid
             if (identifier == PublicConstants.quoteCreationFlowStatusIdentifier) {
-                // Get code
-                val code = if (tempCode == -1) {
-                    "Could not identify status code"
-                } else {
-                    tempCode
-                }
-
                 // Update message in the dialog
                 Handler(mainLooper).postDelayed({
                     QuoteCreationStatusDialog(
                         mContext = this,
                         message = "Uri Identifier = $uriIdentifier" +
-                                "\n Identifier = $identifier" +
-                                "\n Code = $code" +
-                                "\n Message = $message"
+                            "\n Identifier = $identifier" +
+                            "\n Code = $code" +
+                            "\n Message = $message" +
+                            "\n Inspection report URL = $inspectionReportUrl" +
+                            "\n Quote Doc Id = $quoteDocId" +
+                            "\n Inspection Request Id = $inspectionRequestId" +
+                            "\n Fuel Level = $fuelLevel" +
+                            "\n Exterior Cleanliness Score = $extCleanScore" +
+                            "\n Exterior Damage Status = $extDmgStatus"
                     ).show()
                 }, 1000L)
 
@@ -195,7 +201,9 @@ class MainActivity : AppCompatActivity() {
                     // Quote data
                     val quoteData = QuoteData(
                         fleetImageType = binding.etFleetImageType.text.toString(),
-                        inspectionType = binding.etInspectionType.text.toString()
+                        inspectionType = binding.etInspectionType.text.toString(),
+                        source = binding.etSource.text.toString(),
+                        washingRequired = binding.swWashingRequired.isChecked
                     )
 
                     // Create an instance of input details
@@ -272,7 +280,9 @@ class MainActivity : AppCompatActivity() {
                     // Quote data
                     val quoteData = QuoteData(
                         inspectionType = binding.etInspectionType.text.toString(),
-                        fleetImageType = binding.etFleetImageType.text.toString()
+                        fleetImageType = binding.etFleetImageType.text.toString(),
+                        source = binding.etSource.text.toString(),
+                        washingRequired = binding.swWashingRequired.isChecked
                     )
 
                     // Create an instance of input details
@@ -342,7 +352,9 @@ class MainActivity : AppCompatActivity() {
                     // Quote data
                     val quoteData = QuoteData(
                         inspectionType = binding.etInspectionType.text.toString(),
-                        fleetImageType = binding.etFleetImageType.text.toString()
+                        fleetImageType = binding.etFleetImageType.text.toString(),
+                        source = binding.etSource.text.toString(),
+                        washingRequired = binding.swWashingRequired.isChecked
                     )
 
                     // Create an instance of input details
@@ -452,6 +464,12 @@ class MainActivity : AppCompatActivity() {
 
             // Show fleet image type ip
             binding.tlFleetImageType.visibility = View.VISIBLE
+
+            // Show source ip
+            binding.tlSource.visibility = View.VISIBLE
+
+            // Show washing required switch
+            binding.llWashingRequiredSwitchContainer.visibility = View.VISIBLE
 
             // Show customer name ip
             binding.tlCustomerName.visibility = View.VISIBLE
@@ -565,6 +583,12 @@ class MainActivity : AppCompatActivity() {
 
             // Hide fleet image type ip
             binding.tlFleetImageType.visibility = View.GONE
+
+            // Hide washing required switch
+            binding.llWashingRequiredSwitchContainer.visibility = View.GONE
+
+            // Hide source ip
+            binding.tlSource.visibility = View.GONE
 
             // Hide customer name ip
             binding.tlCustomerName.visibility = View.GONE
