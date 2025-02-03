@@ -29,3 +29,4 @@ local.properties
 /.idea/appInsightsSettings.xml
 /.idea/other.xml
 /app/release/app-release.apk
+/cq-sdk-demo-app.jks
