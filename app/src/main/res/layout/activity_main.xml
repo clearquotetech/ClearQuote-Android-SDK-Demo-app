@@ -342,6 +342,21 @@
                 android:text="Washing Required " />
         </LinearLayout>
 
+        <!--Is resuming-->
+        <LinearLayout
+            android:id="@+id/llIsResumingSwitchContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="10dp">
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/swIsResuming"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Is Resuming" />
+        </LinearLayout>
+
         <!--Customer name-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tlCustomerName"
@@ -518,13 +533,21 @@
             android:gravity="center"
             android:text="SDK Key:" />
 
-        <!--Current key-->
+        <!--Current dealer-->
         <TextView
             android:id="@+id/tvDealerCode"
             style="@style/cq_sdk_c1_caption"
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="Dealer Code:" />
+
+        <!--Current id-->
+        <TextView
+            android:id="@+id/tvDealerId"
+            style="@style/cq_sdk_c1_caption"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Dealer Id:" />
 
         <!--Current key-->
         <TextView

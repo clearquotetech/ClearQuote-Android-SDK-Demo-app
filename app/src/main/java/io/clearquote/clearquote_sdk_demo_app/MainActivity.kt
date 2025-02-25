@@ -156,6 +156,10 @@ class MainActivity : AppCompatActivity() {
             binding.tvDealerCode.visibility = View.VISIBLE
             binding.tvDealerCode.text = "Dealer Code: ${sdkUserDetails.dealerCode}"
 
+            // Show dealer id
+            binding.tvDealerId.visibility = View.VISIBLE
+            binding.tvDealerId.text = "Dealer Id: ${sdkUserDetails.dealer_id}"
+
             // Show user name
             binding.tvUserName.visibility = View.VISIBLE
             binding.tvUserName.text = "Username: ${sdkUserDetails.userName}"
@@ -216,7 +220,8 @@ class MainActivity : AppCompatActivity() {
                     // Create an instance of user flow params
                     val userFlowParams = UserFlowParams(
                         isOffline = binding.swOfflineMode.isChecked,
-                        skipInputPage = false
+                        skipInputPage = false,
+                        isResuming = binding.swIsResuming.isChecked
                     )
 
                     // Make request to start an inspection
@@ -367,7 +372,8 @@ class MainActivity : AppCompatActivity() {
                     // Create an instance of user flow params
                     val userFlowParams = UserFlowParams(
                         isOffline = binding.swOfflineMode.isChecked,
-                        skipInputPage = true
+                        skipInputPage = true,
+                        isResuming = binding.swIsResuming.isChecked
                     )
 
                     // Make request to start an inspection
@@ -471,6 +477,9 @@ class MainActivity : AppCompatActivity() {
             // Show washing required switch
             binding.llWashingRequiredSwitchContainer.visibility = View.VISIBLE
 
+            // Show is resuming switch
+            binding.llIsResumingSwitchContainer.visibility = View.VISIBLE
+
             // Show customer name ip
             binding.tlCustomerName.visibility = View.VISIBLE
 
@@ -502,6 +511,10 @@ class MainActivity : AppCompatActivity() {
             // Hide Dealer code heading
             binding.tvDealerCode.visibility = View.GONE
             binding.tvDealerCode.text = ""
+
+            // Hide Dealer id heading
+            binding.tvDealerId.visibility = View.GONE
+            binding.tvDealerId.text = ""
 
             // Hide User name heading
             binding.tvUserName.visibility = View.GONE
@@ -586,6 +599,9 @@ class MainActivity : AppCompatActivity() {
 
             // Hide washing required switch
             binding.llWashingRequiredSwitchContainer.visibility = View.GONE
+
+            // Hide is resuming switch
+            binding.llIsResumingSwitchContainer.visibility = View.GONE
 
             // Hide source ip
             binding.tlSource.visibility = View.GONE
