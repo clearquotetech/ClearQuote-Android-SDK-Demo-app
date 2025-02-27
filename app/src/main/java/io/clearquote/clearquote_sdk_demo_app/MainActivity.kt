@@ -84,6 +84,7 @@ class MainActivity : AppCompatActivity() {
             // Extra fields
             val inspectionReportUrl = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusInspectionReportUrlKeyInIntent)
             val quoteDocId = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusQuoteDocIdKeyInIntent)
+            val quoteId = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusQuoteIdKeyInIntent)
             val inspectionRequestId = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusInspectionRequestIdKeyInIntent)
             val fuelLevel = intent.getIntExtra(PublicConstants.quoteCreationFlowStatusFuelLevelIdKeyInIntent, -1)
             val extCleanScore = intent.getIntExtra(PublicConstants.quoteCreationFlowStatusExtCleanScoreKeyInIntent, -1)
@@ -101,6 +102,7 @@ class MainActivity : AppCompatActivity() {
                             "\n Message = $message" +
                             "\n Inspection report URL = $inspectionReportUrl" +
                             "\n Quote Doc Id = $quoteDocId" +
+                            "\n Quote Id = $quoteId" +
                             "\n Inspection Request Id = $inspectionRequestId" +
                             "\n Fuel Level = $fuelLevel" +
                             "\n Exterior Cleanliness Score = $extCleanScore" +
