@@ -45,6 +45,7 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAd
 
     // Tobe initialized later
     private var liveDetectionDTO: LiveDetectionDTO = LiveDetectionDTO(
+        _id = null,
         bodystyle = "",
         overlays = listOf(),
         panelsToZoneMapping = null,
