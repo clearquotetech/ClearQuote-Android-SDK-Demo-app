@@ -30,3 +30,4 @@ local.properties
 /.idea/other.xml
 /app/release/app-release.apk
 /cq-sdk-demo-app.jks
+/.idea/AndroidProjectSystem.xml
