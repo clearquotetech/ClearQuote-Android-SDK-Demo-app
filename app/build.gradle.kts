@@ -67,7 +67,7 @@ dependencies {
     implementation("com.google.firebase:firebase-crashlytics")
 
     // Maven local
-    implementation("io.clearquote.assessment.cq_sdk:cq-android-sdk:2.7.4@aar") { isTransitive = true }
+    implementation("io.clearquote.assessment.cq_sdk:cq-android-sdk:2.8.3@aar") { isTransitive = true }
 
     // Leak canary
     // debugImplementation ("com.squareup.leakcanary:leakcanary-android:2.14")
