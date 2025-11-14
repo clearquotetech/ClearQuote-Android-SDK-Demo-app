@@ -446,6 +446,28 @@
                 android:text="Offline Mode " />
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/headingResumeInspection"
+            style="@style/cq_sdk_h6_headline"
+            android:text="Last Client Quote Id  (Resume Inspection)"
+            android:layout_marginTop="10dp"/>
+
+        <!--Client unique id-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlLastInspectionQuoteId"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Client Quote Id">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etLastInspectionQuoteId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <!--Divider-->
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/md2"
@@ -482,6 +504,15 @@
             android:textAllCaps="false"
             android:layout_marginTop="10dp"
             android:text="Start Inspection : Skip input" />
+
+        <!--Resume inspection with existing key-->
+        <Button
+            android:id="@+id/btnResumeInspection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:text="Resume Inspection" />
 
         <!--Change key-->
         <Button

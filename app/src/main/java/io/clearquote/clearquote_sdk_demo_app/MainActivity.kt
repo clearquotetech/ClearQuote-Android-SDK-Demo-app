@@ -232,7 +232,7 @@ class MainActivity : AppCompatActivity() {
                         clientAttrs = clientAttrs,
                         inputDetails = inputDetails,
                         userFlowParams = userFlowParams,
-                        result = { isStarted, msg, code ->
+                        result = { isStarted, msg, code, quoteDocId ->
                             // Show error if required
                             if (!isStarted) {
                                 // Dismiss the loading dialog
@@ -244,6 +244,34 @@ class MainActivity : AppCompatActivity() {
                         }
                     )
                 }
+            }
+
+            // Show resume inspection Button
+            binding.btnResumeInspection.visibility = View.VISIBLE
+            binding.btnResumeInspection.setOnClickListener {
+                if(binding.etLastInspectionQuoteId.text.toString().isNotBlank()) {
+                    // Send to sdk initialization activity
+                    val quoteDocId = binding.etLastInspectionQuoteId.text.toString()
+                    if (cqSDKInitializer.isCQSDKInitialized()) {
+                        // Show a loading dialog
+                        loadingDialog?.show()
+                        // Make request to start an inspection
+                        cqSDKInitializer.resumeInspection(
+                            activity = this,
+                            quoteDocId = quoteDocId,
+                            result = { isStarted, msg, code, quoteDocId ->
+                                // Show error if required
+                                if (!isStarted) {
+                                    // Dismiss the loading dialog
+                                    loadingDialog?.dismiss()
+                                    // Show error
+                                    showErrorDialog(message = "message= $msg, code= $code, quoteDocId= $quoteDocId")
+                                }
+                            }
+                        )
+                    }
+                }
+
             }
 
             // Show start inspection with offline mode selection is upto the user
@@ -304,7 +332,7 @@ class MainActivity : AppCompatActivity() {
                         activity = this,
                         clientAttrs = clientAttrs,
                         inputDetails = inputDetails,
-                        result = { isStarted, msg, code ->
+                        result = { isStarted, msg, code, quoteDocId ->
                             // Show error if required
                             if (!isStarted) {
                                 // Dismiss the loading dialog
@@ -384,7 +412,14 @@ class MainActivity : AppCompatActivity() {
                         clientAttrs = clientAttrs,
                         inputDetails = inputDetails,
                         userFlowParams = userFlowParams,
-                        result = { isStarted, msg, code ->
+                        result = { isStarted, msg, code, quoteDocId ->
+                            if(quoteDocId != null) {
+                                QuoteCreationStatusDialog(
+                                    mContext = this,
+                                    message =
+                                        "\n Quote Doc Id = $quoteDocId"
+                                ).show()
+                            }
                             // Show error if required
                             if (!isStarted) {
                                 // Dismiss the loading dialog
@@ -400,6 +435,10 @@ class MainActivity : AppCompatActivity() {
 
             // Show offline mode switch
             binding.llOfflineModeSwitchContainer.visibility = View.VISIBLE
+
+            // Show Resume Inspection heading and input field
+            binding.headingResumeInspection.visibility = View.VISIBLE
+            binding.tlLastInspectionQuoteId.visibility = View.VISIBLE
 
             // Show client attrs heading
             binding.tvClientAttrsHeading.visibility = View.VISIBLE
@@ -529,6 +568,15 @@ class MainActivity : AppCompatActivity() {
             // Hide start inspection with offline mode selection is upto the user
             binding.btnStartInspectionOfflineModeSelectionIsUpToTheUser.visibility = View.GONE
             binding.btnStartInspectionOfflineModeSelectionIsUpToTheUser.setOnClickListener(null)
+
+            // Hide resume inspection
+            binding.btnResumeInspection.visibility = View.GONE
+            binding.btnResumeInspection.setOnClickListener(null)
+
+            // Hide Resume Inspection heading and input field
+            binding.headingResumeInspection.visibility = View.GONE
+            binding.tlLastInspectionQuoteId.visibility = View.GONE
+
 
             // Hide stat inspection : skip input
             binding.btnStartInspectionWithSkipInput.visibility = View.GONE
@@ -701,6 +749,7 @@ class MainActivity : AppCompatActivity() {
                 binding.etCustomerEmail.setText("")
                 binding.etCustomerDialCode.setText("")
                 binding.etCustomerPhoneNumber.setText("")
+                binding.etLastInspectionQuoteId.setText("")
                 binding.swOfflineMode.isChecked = false
 
                 // Other
