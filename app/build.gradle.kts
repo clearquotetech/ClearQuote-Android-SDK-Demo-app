@@ -13,7 +13,7 @@ android {
         applicationId = "io.clearquote.clearquote_sdk_demo_app"
         minSdk = 26
         targetSdk = 34
-        versionCode = 25
+        versionCode = 26
         versionName = "3.6"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
