@@ -13,8 +13,8 @@ android {
         applicationId = "io.clearquote.clearquote_sdk_demo_app"
         minSdk = 26
         targetSdk = 34
-        versionCode = 27
-        versionName = "3.8"
+        versionCode = 28
+        versionName = "3.9"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -67,7 +67,7 @@ dependencies {
     implementation("com.google.firebase:firebase-crashlytics")
 
     // Maven local
-    implementation("io.clearquote.assessment.cq_sdk:cq-android-sdk:2.8.5@aar") { isTransitive = true }
+    implementation("io.clearquote.assessment.cq_sdk:cq-android-sdk:2.8.6@aar") { isTransitive = true }
 
     // Leak canary
     // debugImplementation ("com.squareup.leakcanary:leakcanary-android:2.14")
