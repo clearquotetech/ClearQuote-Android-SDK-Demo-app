@@ -49,7 +49,8 @@ class CapturedImagesActivity : AppCompatActivity(), VerticalRvAdapter.VerticalAd
         bodystyle = "",
         overlays = listOf(),
         panelsToZoneMapping = null,
-        tfLiteConfig = listOf()
+        tfLiteConfig = listOf(),
+        interiorOverlays = listOf()
     )
 
     // Loading dialogs
