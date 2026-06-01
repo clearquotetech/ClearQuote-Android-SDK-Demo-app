@@ -179,7 +179,8 @@ class MainActivity : AppCompatActivity() {
                         userName = binding.etUserName.text.toString().trim(),
                         dealer = binding.etDealer.text.toString().trim(),
                         dealerIdentifier = binding.etDealerIdentifier.text.toString().trim(),
-                        client_unique_id = binding.etClientUniqueId.text.toString().trim()
+                        client_unique_id = binding.etClientUniqueId.text.toString().trim(),
+                        stage_info = binding.etStageInfo.text.toString().trim()
                     )
 
                     // Customer details
@@ -287,7 +288,8 @@ class MainActivity : AppCompatActivity() {
                         userName = binding.etUserName.text.toString().trim(),
                         dealer = binding.etDealer.text.toString().trim(),
                         dealerIdentifier = binding.etDealerIdentifier.text.toString().trim(),
-                        client_unique_id = binding.etClientUniqueId.text.toString().trim()
+                        client_unique_id = binding.etClientUniqueId.text.toString().trim(),
+                        stage_info = binding.etStageInfo.text.toString().trim()
                     )
 
                     // Customer details
@@ -359,7 +361,8 @@ class MainActivity : AppCompatActivity() {
                         userName = binding.etUserName.text.toString().trim(),
                         dealer = binding.etDealer.text.toString().trim(),
                         dealerIdentifier = binding.etDealerIdentifier.text.toString().trim(),
-                        client_unique_id = binding.etClientUniqueId.text.toString().trim()
+                        client_unique_id = binding.etClientUniqueId.text.toString().trim(),
+                        stage_info = binding.etStageInfo.text.toString().trim()
                     )
 
                     // Customer details
@@ -454,6 +457,8 @@ class MainActivity : AppCompatActivity() {
 
             // Show client unique id input field
             binding.tlClientUniqueId.visibility = View.VISIBLE
+
+            binding.tlStageInfo.visibility = View.VISIBLE
 
             // Show offline quote sync complete status
             binding.btnOfflineQuoteSyncCompleteStatus.visibility = View.VISIBLE
@@ -600,6 +605,8 @@ class MainActivity : AppCompatActivity() {
             // Hide client unique id input field
             binding.tlClientUniqueId.visibility = View.GONE
 
+            binding.tlStageInfo.visibility = View.GONE
+
             // Hide offline quote sync complete status button
             binding.btnOfflineQuoteSyncCompleteStatus.visibility = View.GONE
             binding.btnOfflineQuoteSyncCompleteStatus.setOnClickListener(null)
@@ -733,6 +740,7 @@ class MainActivity : AppCompatActivity() {
                 binding.etDealer.setText("")
                 binding.etDealerIdentifier.setText("")
                 binding.etClientUniqueId.setText("")
+                binding.etStageInfo.setText("")
                 binding.etRegNumber.setText("")
                 binding.etMake.setText("")
                 binding.etModel.setText("")
