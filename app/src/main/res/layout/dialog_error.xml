@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    app:cardCornerRadius="@dimen/corner_radius">
+    app:cardCornerRadius="@dimen/cq_sdk_corner_radius">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         <TextView
             android:id="@+id/tvErrorMessage"
             android:gravity="center"
-            style="@style/h6_headline" />
+            style="@style/cq_sdk_h6_headline" />
 
         <!--Okay button-->
         <Button

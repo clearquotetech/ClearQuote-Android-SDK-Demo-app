@@ -13,9 +13,8 @@ android {
         applicationId = "io.clearquote.clearquote_sdk_demo_app"
         minSdk = 26
         targetSdk = 34
-        versionCode = 9
-        versionName = "1.9"
-
+        versionCode = 29
+        versionName = "4.4"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -48,15 +47,6 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    splits {
-        abi {
-            isEnable = true
-            reset()
-            include("x86", "x86_64", "armeabi", "armeabi-v7a", "mips", "mips64", "arm64-v8a")
-            isUniversalApk = false
-        }
-    }
-
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -76,6 +66,9 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-crashlytics")
 
-    // CQ SDK
-    implementation ("com.github.clearquotetech:cq-android-sdk:2.0.9-test")
+    // Maven local
+    implementation("io.clearquote.assessment.cq_sdk:cq-android-sdk:3.0.4@aar") { isTransitive = true }
+
+    // Leak canary
+    // debugImplementation ("com.squareup.leakcanary:leakcanary-android:2.14")
 }

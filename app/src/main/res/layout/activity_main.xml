@@ -7,9 +7,9 @@
     android:fillViewport="true"
     android:fadeScrollbars="false"
     android:scrollbars="vertical"
-    android:scrollbarSize="@dimen/scroll_bar_size"
-    android:scrollbarTrackVertical="@color/scroll_bar_track_color"
-    android:scrollbarThumbVertical="@color/scroll_bar_thumb_color">
+    android:scrollbarSize="@dimen/cq_sdk_scroll_bar_size"
+    android:scrollbarTrackVertical="@color/cq_sdk_scroll_bar_track_color"
+    android:scrollbarThumbVertical="@color/cq_sdk_scroll_bar_thumb_color">
 
     <!--Main content-->
     <LinearLayout
@@ -22,7 +22,7 @@
         <!--App name-->
         <TextView
             android:id="@+id/tvAppName"
-            style="@style/h5_headline"
+            style="@style/cq_sdk_h5_headline"
             android:text="@string/app_name"
             android:layout_marginTop="20dp"
             android:gravity="center" />
@@ -38,7 +38,7 @@
         <!--Client attrs heading-->
         <TextView
             android:id="@+id/tvClientAttrsHeading"
-            style="@style/h6_headline"
+            style="@style/cq_sdk_h6_headline"
             android:text="Client attributes"
             android:layout_marginTop="10dp"/>
 
@@ -50,10 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="Enter Username"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Enter Username">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etUserName"
                 android:layout_width="match_parent"
@@ -69,10 +66,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
-            android:hint="Enter Dealer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Enter Dealer">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etDealer"
                 android:layout_width="match_parent"
@@ -88,10 +82,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
-            android:hint="Enter Dealer Identifier"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Enter Dealer Identifier">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etDealerIdentifier"
                 android:layout_width="match_parent"
@@ -107,12 +98,25 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
-            android:hint="Enter Client Unique Id"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Enter Client Unique Id">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etClientUniqueId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Stage info-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlStageInfo"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Stage Info">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etStageInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -128,7 +132,7 @@
         <!--Input details heading-->
         <TextView
             android:id="@+id/tvInputDetailsHeading"
-            style="@style/h6_headline"
+            style="@style/cq_sdk_h6_headline"
             android:layout_marginTop="10dp"
             android:text="Input details" />
 
@@ -140,10 +144,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="Enter Registration Number"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Enter Registration Number">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etRegNumber"
                 android:layout_width="match_parent"
@@ -159,10 +160,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="20dp"
-            android:hint="Enter Make"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Enter Make">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etMake"
                 android:layout_width="match_parent"
@@ -178,10 +176,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="Enter Model"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Enter Model">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etModel"
                 android:layout_width="match_parent"
@@ -197,15 +192,186 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="Enter Bodystyle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Enter Bodystyle">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etBodyStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Model code-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlModelCode"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Model Code">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etModelCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Model group-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlModelGroup"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Model Group">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etModelGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Vehicle exterior color-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlVehicleExteriorColor"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Vehicle Exterior Color">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etVehicleExteriorColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Variant-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlVariant"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Variant">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etVariant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Variant-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlVin"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter VIN">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etVin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Fuel type-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlFuelType"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Fuel Type">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etFuelType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Inspection type-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlInspectionType"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Inspection Type">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etInspectionType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Fleet image type-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlFleetImageType"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Fleet Image Type">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etFleetImageType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Source-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlSource"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Source">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSource"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Washing required switch button selector-->
+        <LinearLayout
+            android:id="@+id/llWashingRequiredSwitchContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="10dp">
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/swWashingRequired"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Washing Required " />
+        </LinearLayout>
+
+        <!--Is resuming-->
+        <LinearLayout
+            android:id="@+id/llIsResumingSwitchContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="10dp">
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/swIsResuming"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Is Resuming" />
+        </LinearLayout>
 
         <!--Customer name-->
         <com.google.android.material.textfield.TextInputLayout
@@ -216,10 +382,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="Enter Customer Name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Enter Customer Name">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etCustomerName"
                 android:layout_width="match_parent"
@@ -235,10 +398,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:hint="Enter Customer Email"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:hint="Enter Customer Email">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etCustomerEmail"
                 android:layout_width="match_parent"
@@ -263,10 +423,7 @@
                 android:layout_weight="0.4"
                 android:layout_marginEnd="20dp"
                 android:layout_height="wrap_content"
-                android:hint="Dial code"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:hint="Dial code">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etCustomerDialCode"
                     android:layout_width="match_parent"
@@ -281,10 +438,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:hint="Phone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:hint="Phone">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etCustomerPhoneNumber"
                     android:layout_width="match_parent"
@@ -292,6 +446,43 @@
                     android:inputType="phone"/>
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
+
+        <!--Online offline switch button selector-->
+        <LinearLayout
+            android:id="@+id/llOfflineModeSwitchContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="10dp">
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/swOfflineMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Offline Mode " />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/headingResumeInspection"
+            style="@style/cq_sdk_h6_headline"
+            android:text="Last Client Quote Id  (Resume Inspection)"
+            android:layout_marginTop="10dp"/>
+
+        <!--Client unique id-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlLastInspectionQuoteId"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Client Quote Id">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etLastInspectionQuoteId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!--Divider-->
         <com.google.android.material.divider.MaterialDivider
@@ -301,7 +492,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"/>
 
-        <!--Start inspection with existing key-->
+        <!--Start inspection with strict offline mode existing key-->
         <Button
             android:id="@+id/btnStartInspection"
             android:layout_width="wrap_content"
@@ -309,6 +500,35 @@
             android:textAllCaps="false"
             android:layout_marginTop="10dp"
             android:text="Start Inspection" />
+
+        <!--Start inspection with offline mode selection-->
+        <Button
+            android:id="@+id/btnStartInspectionOfflineModeSelectionIsUpToTheUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:text="Start Inspection : Offline mode selection is upto the user" />
+
+
+
+        <!--Start inspection with existing key and skip input page-->
+        <Button
+            android:id="@+id/btnStartInspectionWithSkipInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:text="Start Inspection : Skip input" />
+
+        <!--Resume inspection with existing key-->
+        <Button
+            android:id="@+id/btnResumeInspection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:text="Resume Inspection" />
 
         <!--Change key-->
         <Button
@@ -319,18 +539,6 @@
             android:textAllCaps="false"
             android:text="Configure key" />
 
-        <!--Log out-->
-        <Button
-            android:id="@+id/btnLogOut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="?attr/materialButtonOutlinedStyle"
-            android:textColor="@color/red_200"
-            app:strokeColor="@color/red_200"
-            android:textAllCaps="false"
-            android:layout_marginTop="20dp"
-            android:text="Logout"/>
-
         <!--Open CQ native android app-->
         <Button
             android:id="@+id/btnOpenCqNativeApp"
@@ -338,6 +546,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textAllCaps="false"
+            style="?attr/materialButtonOutlinedStyle"
+            app:strokeColor="@color/primary_color"
             android:text="Open CQ native app" />
 
         <!--Check quote completion status-->
@@ -347,28 +557,49 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textAllCaps="false"
+            style="?attr/materialButtonOutlinedStyle"
+            app:strokeColor="@color/primary_color"
             android:text="Check offline quote sync complete status" />
+
+        <!--Start auto capture flow-->
+        <Button
+            android:id="@+id/btnStartAutoCaptureFlow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textAllCaps="false"
+            style="?attr/materialButtonOutlinedStyle"
+            app:strokeColor="@color/primary_color"
+            android:text="Start Auto capture flow" />
 
         <!--Current key-->
         <TextView
             android:id="@+id/tvSdkKeyHeading"
-            style="@style/c1_caption"
+            style="@style/cq_sdk_c1_caption"
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="SDK Key:" />
 
-        <!--Current key-->
+        <!--Current dealer-->
         <TextView
             android:id="@+id/tvDealerCode"
-            style="@style/c1_caption"
+            style="@style/cq_sdk_c1_caption"
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="Dealer Code:" />
 
+        <!--Current id-->
+        <TextView
+            android:id="@+id/tvDealerId"
+            style="@style/cq_sdk_c1_caption"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Dealer Id:" />
+
         <!--Current key-->
         <TextView
             android:id="@+id/tvUserName"
-            style="@style/c1_caption"
+            style="@style/cq_sdk_c1_caption"
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="Username:" />
@@ -376,7 +607,7 @@
         <!--CQ SDK version name-->
         <TextView
             android:id="@+id/tvCQSDKVersionName"
-            style="@style/c1_caption"
+            style="@style/cq_sdk_c1_caption"
             android:text=""
             android:gravity="center"
             android:layout_marginTop="20dp"/>
@@ -384,10 +615,22 @@
         <!--App version name-->
         <TextView
             android:id="@+id/tvTestAppVersionName"
-            style="@style/c1_caption"
+            style="@style/cq_sdk_c1_caption"
             android:text=""
             android:gravity="center"
+            android:layout_marginTop="20dp" />
+
+        <!--Log out-->
+        <Button
+            android:id="@+id/btnLogOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?attr/materialButtonOutlinedStyle"
+            android:textColor="@color/cq_sdk_red_200"
+            app:strokeColor="@color/cq_sdk_red_200"
+            android:textAllCaps="false"
             android:layout_marginTop="20dp"
+            android:text="Logout"
             android:layout_marginBottom="20dp"/>
     </LinearLayout>
 </ScrollView>
