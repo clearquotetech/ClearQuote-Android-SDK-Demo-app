@@ -180,7 +180,8 @@ class MainActivity : AppCompatActivity() {
                         dealer = binding.etDealer.text.toString().trim(),
                         dealerIdentifier = binding.etDealerIdentifier.text.toString().trim(),
                         client_unique_id = binding.etClientUniqueId.text.toString().trim(),
-                        stage_info = binding.etStageInfo.text.toString().trim()
+                        stage_info = binding.etStageInfo.text.toString().trim(),
+                        organisationId = binding.etOrganisationId.text.toString().trim().ifBlank { null }
                     )
 
                     // Customer details
@@ -289,7 +290,8 @@ class MainActivity : AppCompatActivity() {
                         dealer = binding.etDealer.text.toString().trim(),
                         dealerIdentifier = binding.etDealerIdentifier.text.toString().trim(),
                         client_unique_id = binding.etClientUniqueId.text.toString().trim(),
-                        stage_info = binding.etStageInfo.text.toString().trim()
+                        stage_info = binding.etStageInfo.text.toString().trim(),
+                        organisationId = binding.etOrganisationId.text.toString().trim().ifBlank { null }
                     )
 
                     // Customer details
@@ -362,7 +364,8 @@ class MainActivity : AppCompatActivity() {
                         dealer = binding.etDealer.text.toString().trim(),
                         dealerIdentifier = binding.etDealerIdentifier.text.toString().trim(),
                         client_unique_id = binding.etClientUniqueId.text.toString().trim(),
-                        stage_info = binding.etStageInfo.text.toString().trim()
+                        stage_info = binding.etStageInfo.text.toString().trim(),
+                        organisationId = binding.etOrganisationId.text.toString().trim().ifBlank { null }
                     )
 
                     // Customer details
@@ -459,6 +462,9 @@ class MainActivity : AppCompatActivity() {
             binding.tlClientUniqueId.visibility = View.VISIBLE
 
             binding.tlStageInfo.visibility = View.VISIBLE
+
+            // Show organisation id input field
+            binding.tlOrganisationId.visibility = View.VISIBLE
 
             // Show offline quote sync complete status
             binding.btnOfflineQuoteSyncCompleteStatus.visibility = View.VISIBLE
@@ -607,6 +613,9 @@ class MainActivity : AppCompatActivity() {
 
             binding.tlStageInfo.visibility = View.GONE
 
+            // Hide organisation id input field
+            binding.tlOrganisationId.visibility = View.GONE
+
             // Hide offline quote sync complete status button
             binding.btnOfflineQuoteSyncCompleteStatus.visibility = View.GONE
             binding.btnOfflineQuoteSyncCompleteStatus.setOnClickListener(null)
@@ -741,6 +750,7 @@ class MainActivity : AppCompatActivity() {
                 binding.etDealerIdentifier.setText("")
                 binding.etClientUniqueId.setText("")
                 binding.etStageInfo.setText("")
+                binding.etOrganisationId.setText("")
                 binding.etRegNumber.setText("")
                 binding.etMake.setText("")
                 binding.etModel.setText("")
