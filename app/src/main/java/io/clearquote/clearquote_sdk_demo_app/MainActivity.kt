@@ -72,45 +72,42 @@ class MainActivity : AppCompatActivity() {
         setUpUI()
     }
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        if (intent != null) {
-            // Get status
-            val uriIdentifier = intent.data
-            val identifier = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusIdentifierKeyInIntent) ?: "Could not identify Identifier"
-            val message = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusMsgKeyInIntent) ?: "Could not identify status message"
-            val code = intent.getIntExtra(PublicConstants.quoteCreationFlowStatusCodeKeyInIntent, -1)
-            
-            // Extra fields
-            val inspectionReportUrl = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusInspectionReportUrlKeyInIntent)
-            val quoteDocId = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusQuoteDocIdKeyInIntent)
-            val quoteId = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusQuoteIdKeyInIntent)
-            val inspectionRequestId = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusInspectionRequestIdKeyInIntent)
-            val fuelLevel = intent.getIntExtra(PublicConstants.quoteCreationFlowStatusFuelLevelIdKeyInIntent, -1)
-            val extCleanScore = intent.getIntExtra(PublicConstants.quoteCreationFlowStatusExtCleanScoreKeyInIntent, -1)
-            val extDmgStatus = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusExtDmgStatusKeyInIntent)
+        // Get status
+        val uriIdentifier = intent.data
+        val identifier = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusIdentifierKeyInIntent) ?: "Could not identify Identifier"
+        val message = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusMsgKeyInIntent) ?: "Could not identify status message"
+        val code = intent.getIntExtra(PublicConstants.quoteCreationFlowStatusCodeKeyInIntent, -1)
 
-            // Check if identifier is valid
-            if (identifier == PublicConstants.quoteCreationFlowStatusIdentifier) {
-                // Update message in the dialog
-                Handler(mainLooper).postDelayed({
-                    QuoteCreationStatusDialog(
-                        mContext = this,
-                        message = "Uri Identifier = $uriIdentifier" +
-                            "\n Identifier = $identifier" +
-                            "\n Code = $code" +
-                            "\n Message = $message" +
-                            "\n Inspection report URL = $inspectionReportUrl" +
-                            "\n Quote Doc Id = $quoteDocId" +
-                            "\n Quote Id = $quoteId" +
-                            "\n Inspection Request Id = $inspectionRequestId" +
-                            "\n Fuel Level = $fuelLevel" +
-                            "\n Exterior Cleanliness Score = $extCleanScore" +
-                            "\n Exterior Damage Status = $extDmgStatus"
-                    ).show()
-                }, 1000L)
+        // Extra fields
+        val inspectionReportUrl = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusInspectionReportUrlKeyInIntent)
+        val quoteDocId = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusQuoteDocIdKeyInIntent)
+        val quoteId = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusQuoteIdKeyInIntent)
+        val inspectionRequestId = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusInspectionRequestIdKeyInIntent)
+        val fuelLevel = intent.getIntExtra(PublicConstants.quoteCreationFlowStatusFuelLevelIdKeyInIntent, -1)
+        val extCleanScore = intent.getIntExtra(PublicConstants.quoteCreationFlowStatusExtCleanScoreKeyInIntent, -1)
+        val extDmgStatus = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusExtDmgStatusKeyInIntent)
 
-            }
+        // Check if identifier is valid
+        if (identifier == PublicConstants.quoteCreationFlowStatusIdentifier) {
+            // Update message in the dialog
+            Handler(mainLooper).postDelayed({
+                QuoteCreationStatusDialog(
+                    mContext = this,
+                    message = "Uri Identifier = $uriIdentifier" +
+                        "\n Identifier = $identifier" +
+                        "\n Code = $code" +
+                        "\n Message = $message" +
+                        "\n Inspection report URL = $inspectionReportUrl" +
+                        "\n Quote Doc Id = $quoteDocId" +
+                        "\n Quote Id = $quoteId" +
+                        "\n Inspection Request Id = $inspectionRequestId" +
+                        "\n Fuel Level = $fuelLevel" +
+                        "\n Exterior Cleanliness Score = $extCleanScore" +
+                        "\n Exterior Damage Status = $extDmgStatus"
+                ).show()
+            }, 1000L)
         }
     }
 
