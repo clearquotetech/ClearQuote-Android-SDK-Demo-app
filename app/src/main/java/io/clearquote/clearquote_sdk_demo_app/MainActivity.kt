@@ -178,7 +178,9 @@ class MainActivity : AppCompatActivity() {
                         dealerIdentifier = binding.etDealerIdentifier.text.toString().trim(),
                         client_unique_id = binding.etClientUniqueId.text.toString().trim(),
                         stage_info = binding.etStageInfo.text.toString().trim(),
-                        organisationId = binding.etOrganisationId.text.toString().trim().ifBlank { null }
+                        organisationId = binding.etOrganisationId.text.toString().trim().ifBlank { null },
+                        sourceAppName = binding.etSourceAppName.text.toString().trim().ifBlank { null },
+                        repairOrderID = binding.etRepairOrderId.text.toString().trim().ifBlank { null }
                     )
 
                     // Customer details
@@ -200,7 +202,8 @@ class MainActivity : AppCompatActivity() {
                         vin = binding.etVin.text.toString(),
                         modelCode = binding.etModelCode.text.toString(),
                         modelGroup = binding.etModelGroup.text.toString(),
-                        vehicleExteriorColor = binding.etVehicleExteriorColor.text.toString()
+                        vehicleExteriorColor = binding.etVehicleExteriorColor.text.toString(),
+                        year = binding.etYear.text.toString()
                     )
 
                     // Quote data
@@ -288,7 +291,9 @@ class MainActivity : AppCompatActivity() {
                         dealerIdentifier = binding.etDealerIdentifier.text.toString().trim(),
                         client_unique_id = binding.etClientUniqueId.text.toString().trim(),
                         stage_info = binding.etStageInfo.text.toString().trim(),
-                        organisationId = binding.etOrganisationId.text.toString().trim().ifBlank { null }
+                        organisationId = binding.etOrganisationId.text.toString().trim().ifBlank { null },
+                        sourceAppName = binding.etSourceAppName.text.toString().trim().ifBlank { null },
+                        repairOrderID = binding.etRepairOrderId.text.toString().trim().ifBlank { null }
                     )
 
                     // Customer details
@@ -310,7 +315,8 @@ class MainActivity : AppCompatActivity() {
                         vin = binding.etVin.text.toString(),
                         modelCode = binding.etModelCode.text.toString(),
                         modelGroup = binding.etModelGroup.text.toString(),
-                        vehicleExteriorColor = binding.etVehicleExteriorColor.text.toString()
+                        vehicleExteriorColor = binding.etVehicleExteriorColor.text.toString(),
+                        year = binding.etYear.text.toString()
                     )
 
                     // Quote data
@@ -362,7 +368,9 @@ class MainActivity : AppCompatActivity() {
                         dealerIdentifier = binding.etDealerIdentifier.text.toString().trim(),
                         client_unique_id = binding.etClientUniqueId.text.toString().trim(),
                         stage_info = binding.etStageInfo.text.toString().trim(),
-                        organisationId = binding.etOrganisationId.text.toString().trim().ifBlank { null }
+                        organisationId = binding.etOrganisationId.text.toString().trim().ifBlank { null },
+                        sourceAppName = binding.etSourceAppName.text.toString().trim().ifBlank { null },
+                        repairOrderID = binding.etRepairOrderId.text.toString().trim().ifBlank { null }
                     )
 
                     // Customer details
@@ -384,7 +392,8 @@ class MainActivity : AppCompatActivity() {
                         vin = binding.etVin.text.toString(),
                         modelCode = binding.etModelCode.text.toString(),
                         modelGroup = binding.etModelGroup.text.toString(),
-                        vehicleExteriorColor = binding.etVehicleExteriorColor.text.toString()
+                        vehicleExteriorColor = binding.etVehicleExteriorColor.text.toString(),
+                        year = binding.etYear.text.toString()
                     )
 
                     // Quote data
@@ -463,6 +472,12 @@ class MainActivity : AppCompatActivity() {
             // Show organisation id input field
             binding.tlOrganisationId.visibility = View.VISIBLE
 
+            // Show source app name input field
+            binding.tlSourceAppName.visibility = View.VISIBLE
+
+            // Show repair order ID input field
+            binding.tlRepairOrderId.visibility = View.VISIBLE
+
             // Show offline quote sync complete status
             binding.btnOfflineQuoteSyncCompleteStatus.visibility = View.VISIBLE
 
@@ -510,6 +525,9 @@ class MainActivity : AppCompatActivity() {
 
             // Show vin ip
             binding.tlVin.visibility = View.VISIBLE
+
+            // Show year ip
+            binding.tlYear.visibility = View.VISIBLE
 
             // Show fuel type ip
             binding.tlFuelType.visibility = View.VISIBLE
@@ -613,6 +631,12 @@ class MainActivity : AppCompatActivity() {
             // Hide organisation id input field
             binding.tlOrganisationId.visibility = View.GONE
 
+            // Hide source app name input field
+            binding.tlSourceAppName.visibility = View.GONE
+
+            // Hide repair order ID input field
+            binding.tlRepairOrderId.visibility = View.GONE
+
             // Hide offline quote sync complete status button
             binding.btnOfflineQuoteSyncCompleteStatus.visibility = View.GONE
             binding.btnOfflineQuoteSyncCompleteStatus.setOnClickListener(null)
@@ -650,6 +674,9 @@ class MainActivity : AppCompatActivity() {
 
             // Hide vin ip
             binding.tlVin.visibility = View.GONE
+
+            // Hide year ip
+            binding.tlYear.visibility = View.GONE
 
             // Hide fuel type ip
             binding.tlFuelType.visibility = View.GONE
@@ -748,6 +775,8 @@ class MainActivity : AppCompatActivity() {
                 binding.etClientUniqueId.setText("")
                 binding.etStageInfo.setText("")
                 binding.etOrganisationId.setText("")
+                binding.etSourceAppName.setText("")
+                binding.etRepairOrderId.setText("")
                 binding.etRegNumber.setText("")
                 binding.etMake.setText("")
                 binding.etModel.setText("")
@@ -757,6 +786,7 @@ class MainActivity : AppCompatActivity() {
                 binding.etVehicleExteriorColor.setText("")
                 binding.etVariant.setText("")
                 binding.etVin.setText("")
+                binding.etYear.setText("")
                 binding.etFuelType.setText("")
                 binding.etInspectionType.setText("")
                 binding.etFleetImageType.setText("")

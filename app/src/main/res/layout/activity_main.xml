@@ -137,6 +137,38 @@
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!--Source app name-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlSourceAppName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Source App Name">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSourceAppName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Repair order ID-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlRepairOrderId"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Repair Order ID">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etRepairOrderId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <!--Divider-->
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/md1"
@@ -279,7 +311,7 @@
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!--Variant-->
+        <!--VIN-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tlVin"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -293,6 +325,23 @@
                 android:id="@+id/etVin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Year of manufacture-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlYear"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Year of Manufacture">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etYear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!--Fuel type-->
