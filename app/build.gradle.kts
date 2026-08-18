@@ -97,15 +97,7 @@ dependencies {
     implementation("androidx.compose.material:material-icons-core")
 
     // Maven local — exclude broken null-version BOM deps; re-added above via platforms
-    implementation("io.clearquote.assessment.cq_sdk:cq-android-sdk:3.0.7@aar") {
-        isTransitive = true
-        exclude(group = "androidx.compose.ui", module = "ui")
-        exclude(group = "androidx.compose.ui", module = "ui-tooling-preview")
-        exclude(group = "androidx.compose.material", module = "material-icons-core")
-        exclude(group = "com.google.firebase", module = "firebase-analytics-ktx")
-        exclude(group = "com.google.firebase", module = "firebase-bom")
-        exclude(group = "androidx.compose", module = "compose-bom")
-    }
+    implementation("io.clearquote.assessment.cq_sdk:cq-android-sdk:3.0.7@aar") { isTransitive = true }
 
     // Leak canary
     // debugImplementation ("com.squareup.leakcanary:leakcanary-android:2.14")
