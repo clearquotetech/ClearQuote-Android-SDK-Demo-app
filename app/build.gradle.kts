@@ -97,7 +97,7 @@ dependencies {
     implementation("androidx.compose.material:material-icons-core")
 
     // Maven local — exclude broken null-version BOM deps; re-added above via platforms
-    implementation("io.clearquote.assessment.cq_sdk:cq-android-sdk:3.0.8@aar") { isTransitive = true }
+    implementation("io.clearquote.assessment.cq_sdk:cq-android-sdk:3.0.9@aar") { isTransitive = true }
 
     // Leak canary
     // debugImplementation ("com.squareup.leakcanary:leakcanary-android:2.14")
