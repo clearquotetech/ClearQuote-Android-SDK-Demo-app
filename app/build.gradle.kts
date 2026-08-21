@@ -7,15 +7,14 @@ plugins {
 
 android {
     namespace = "io.clearquote.clearquote_sdk_demo_app"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "io.clearquote.clearquote_sdk_demo_app"
         minSdk = 26
         targetSdk = 34
-        versionCode = 9
-        versionName = "1.9"
-
+        versionCode = 31
+        versionName = "4.10"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -48,17 +47,31 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    splits {
-        abi {
-            isEnable = true
-            reset()
-            include("x86", "x86_64", "armeabi", "armeabi-v7a", "mips", "mips64", "arm64-v8a")
-            isUniversalApk = false
-        }
-    }
-
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+}
+
+// cq-android-sdk POM lists BOM-managed deps with literal version "null".
+configurations.configureEach {
+    resolutionStrategy.eachDependency {
+        if (requested.version == "null") {
+            when {
+                requested.group.startsWith("androidx.compose") -> {
+                    // Versions aligned with compose-bom:2026.06.01
+                    val version = when (requested.name) {
+                        "material-icons-core", "material-icons-extended" -> "1.7.8"
+                        else -> "1.11.4"
+                    }
+                    useVersion(version)
+                    because("SDK POM embeds null versions for Compose BOM-managed artifacts")
+                }
+                requested.name == "firebase-analytics-ktx" -> {
+                    useVersion("22.5.0")
+                    because("SDK POM embeds null version for Firebase BOM-managed artifact")
+                }
+            }
+        }
     }
 }
 
@@ -71,11 +84,21 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-    // Firebase
-    implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
+    // Firebase (aligned with SDK 3.0.7)
+    implementation(platform("com.google.firebase:firebase-bom:33.16.0"))
     implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-crashlytics")
 
-    // CQ SDK
-    implementation ("com.github.clearquotetech:cq-android-sdk:2.0.9-test")
+    // Compose BOM — required by cq-android-sdk:3.0.7 (and fixes null POM versions)
+    implementation(platform("androidx.compose:compose-bom:2026.06.01"))
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.compose.material:material-icons-core")
+
+    // Maven local — exclude broken null-version BOM deps; re-added above via platforms
+    implementation("io.clearquote.assessment.cq_sdk:cq-android-sdk:3.0.8@aar") { isTransitive = true }
+
+    // Leak canary
+    // debugImplementation ("com.squareup.leakcanary:leakcanary-android:2.14")
 }

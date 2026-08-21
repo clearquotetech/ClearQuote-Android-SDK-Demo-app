@@ -4,37 +4,45 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    app:cardCornerRadius="@dimen/corner_radius">
+    app:cardCornerRadius="@dimen/cq_sdk_corner_radius">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <!--Heading-->
-        <TextView
-            android:id="@+id/tvHeading"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
             android:gravity="center"
-            android:text="Quote creation status"
-            style="@style/h5_headline" />
+            android:orientation="vertical">
 
-        <!--Error message-->
-        <TextView
-            android:id="@+id/tvMessage"
-            android:gravity="center"
-            android:layout_marginTop="20dp"
-            android:text="Code = \n Message = "
-            style="@style/s1_subtitle" />
+            <!--Heading-->
+            <TextView
+                android:id="@+id/tvHeading"
+                android:gravity="center"
+                android:text="Quote creation status"
+                style="@style/cq_sdk_h5_headline" />
 
-        <!--Okay button-->
-        <Button
-            android:id="@+id/btnOkay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Okay"
-            android:layout_marginTop="20dp"
-            android:textAllCaps="false"/>
-    </LinearLayout>
+            <!--Message-->
+            <TextView
+                android:id="@+id/tvMessage"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="Code = \n Message = "
+                android:enabled="true"
+                android:textIsSelectable="true"
+                android:focusable="true"
+                android:longClickable="true"
+                style="@style/cq_sdk_s1_subtitle" />
+
+            <!--Okay button-->
+            <Button
+                android:id="@+id/btnOkay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Okay"
+                android:layout_marginTop="20dp"
+                android:textAllCaps="false"/>
+        </LinearLayout>
+    </ScrollView>
 </com.google.android.material.card.MaterialCardView>

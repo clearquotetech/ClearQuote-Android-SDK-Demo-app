@@ -3,7 +3,7 @@ package io.clearquote.clearquote_sdk_demo_app
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import io.clearquote.assessment.cq_sdk.CQSDKInitializer
-import io.clearquote.assessment.cq_sdk.singletons.PublicConstants
+import io.clearquote.assessment.cq_sdk.singletons.others.PublicConstants
 import io.clearquote.clearquote_sdk_demo_app.databinding.ActivitySdkInitializationBinding
 import io.clearquote.clearquote_sdk_demo_app.support.ErrorDialog
 import io.clearquote.clearquote_sdk_demo_app.support.LoadingDialog

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="20dp">
+
+    <!--View title-->
+    <TextView
+        android:id="@+id/tvViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        style="@style/cq_sdk_s2_subtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--Mandatory mark-->
+    <TextView
+        android:id="@+id/tvMandatoryMark"
+        style="@style/cq_sdk_s2_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*"
+        android:textColor="@color/cq_sdk_red_200"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/tvViewTitle"
+        app:layout_constraintStart_toEndOf="@+id/tvViewTitle"
+        app:layout_constraintTop_toTopOf="@+id/tvViewTitle" />
+
+    <!--Number of images text-->
+    <TextView
+        android:id="@+id/tvViewTitleCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        style="@style/cq_sdk_s2_subtitle"
+        app:layout_constraintStart_toEndOf="@+id/tvViewTitle"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--Capture more images-->
+    <ImageView
+        android:id="@+id/ivCaptureMore"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/cq_sdk_capture_more_images"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tvViewTitle"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--Error message-->
+    <TextView
+        android:id="@+id/tvErrorMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        style="@style/cq_sdk_label"
+        android:textColor="@color/cq_sdk_red_700"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvViewTitle" />
+
+    <!--Divider-->
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/materialDivider4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:color="#993C3C43"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvErrorMsg" />
+
+    <!--Horizontal Recycler view of images-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvItemRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="8dp"
+        android:fadeScrollbars="false"
+        android:scrollbarSize="@dimen/cq_sdk_scroll_bar_size"
+        android:scrollbarThumbHorizontal="@android:color/darker_gray"
+        android:scrollbars="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialDivider4" />
+</androidx.constraintlayout.widget.ConstraintLayout>
