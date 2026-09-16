@@ -89,6 +89,7 @@ class MainActivity : AppCompatActivity() {
         val extCleanScore = intent.getIntExtra(PublicConstants.quoteCreationFlowStatusExtCleanScoreKeyInIntent, -1)
         val extDmgStatus = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusExtDmgStatusKeyInIntent)
         val estimateValue = intent.getDoubleExtra(PublicConstants.quoteCreationFlowStatusEstimateValueKeyInIntent, 0.0)
+        val estimateStatus = intent.getStringExtra(PublicConstants.quoteCreationFlowStatusEstimateStatusKeyInIntent)
 
         // Check if identifier is valid
         if (identifier == PublicConstants.quoteCreationFlowStatusIdentifier) {
@@ -107,7 +108,9 @@ class MainActivity : AppCompatActivity() {
                         "\n Fuel Level = $fuelLevel" +
                         "\n Exterior Cleanliness Score = $extCleanScore" +
                         "\n Exterior Damage Status = $extDmgStatus" +
-                        "\n Estimate value = $estimateValue"
+                        "\n Estimate value = $estimateValue" +
+                        "\n Estimate status = $estimateStatus"
+
                 ).show()
             }, 1000L)
         }
