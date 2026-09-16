@@ -106,7 +106,7 @@ dependencies {
     implementation("androidx.compose.material:material-icons-core")
 
     // Maven local
-    implementation("io.clearquote.assessment.cq_sdk:cq-android-sdk:3.1.1@aar") { isTransitive = true }
+    implementation("io.clearquote.assessment.cq_sdk:cq-android-sdk:3.1.2@aar") { isTransitive = true }
 
     // Leak canary
     // debugImplementation ("com.squareup.leakcanary:leakcanary-android:2.14")
