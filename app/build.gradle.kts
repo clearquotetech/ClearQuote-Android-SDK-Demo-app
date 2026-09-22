@@ -13,8 +13,8 @@ android {
         applicationId = "io.clearquote.clearquote_sdk_demo_app"
         minSdk = 26
         targetSdk = 34
-        versionCode = 36
-        versionName = "4.15"
+        versionCode = 37
+        versionName = "4.17"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -106,7 +106,7 @@ dependencies {
     implementation("androidx.compose.material:material-icons-core")
 
     // Maven local
-    implementation("io.clearquote.assessment.cq_sdk:cq-android-sdk:3.1.2@aar") { isTransitive = true }
+    implementation("io.clearquote.assessment.cq_sdk:cq-android-sdk:3.1.3@aar") { isTransitive = true }
 
     // Leak canary
     // debugImplementation ("com.squareup.leakcanary:leakcanary-android:2.14")
