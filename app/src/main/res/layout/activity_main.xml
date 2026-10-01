@@ -392,6 +392,22 @@
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!--Paint type-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tlPaintType"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="Enter Paint Type">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPaintType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <!--Source-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tlSource"

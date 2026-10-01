@@ -215,6 +215,7 @@ class MainActivity : AppCompatActivity() {
                     val quoteData = QuoteData(
                         fleetImageType = binding.etFleetImageType.text.toString(),
                         inspectionType = binding.etInspectionType.text.toString(),
+                        paintType = binding.etPaintType.text.toString().trim(),
                         source = binding.etSource.text.toString(),
                         washingRequired = binding.swWashingRequired.isChecked
                     )
@@ -328,6 +329,7 @@ class MainActivity : AppCompatActivity() {
                     val quoteData = QuoteData(
                         inspectionType = binding.etInspectionType.text.toString(),
                         fleetImageType = binding.etFleetImageType.text.toString(),
+                        paintType = binding.etPaintType.text.toString().trim(),
                         source = binding.etSource.text.toString(),
                         washingRequired = binding.swWashingRequired.isChecked
                     )
@@ -405,6 +407,7 @@ class MainActivity : AppCompatActivity() {
                     val quoteData = QuoteData(
                         inspectionType = binding.etInspectionType.text.toString(),
                         fleetImageType = binding.etFleetImageType.text.toString(),
+                        paintType = binding.etPaintType.text.toString().trim(),
                         source = binding.etSource.text.toString(),
                         washingRequired = binding.swWashingRequired.isChecked
                     )
@@ -542,6 +545,9 @@ class MainActivity : AppCompatActivity() {
 
             // Show fleet image type ip
             binding.tlFleetImageType.visibility = View.VISIBLE
+
+            // Show paint type ip
+            binding.tlPaintType.visibility = View.VISIBLE
 
             // Show source ip
             binding.tlSource.visibility = View.VISIBLE
@@ -692,6 +698,9 @@ class MainActivity : AppCompatActivity() {
             // Hide fleet image type ip
             binding.tlFleetImageType.visibility = View.GONE
 
+            // Hide paint type ip
+            binding.tlPaintType.visibility = View.GONE
+
             // Hide washing required switch
             binding.llWashingRequiredSwitchContainer.visibility = View.GONE
 
@@ -795,6 +804,7 @@ class MainActivity : AppCompatActivity() {
                 binding.etFuelType.setText("")
                 binding.etInspectionType.setText("")
                 binding.etFleetImageType.setText("")
+                binding.etPaintType.setText("")
                 binding.etCustomerName.setText("")
                 binding.etCustomerEmail.setText("")
                 binding.etCustomerDialCode.setText("")
